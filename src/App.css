@@ -1,0 +1,22 @@
+.nav-links {
+    color: rgba(134, 69, 166, 0.85); /*will change color of text within the element */
+
+}
+
+.nav-links:hover {
+background-color:rgb(116, 155, 160); /*will change background-color of element on hover */
+color:rgb(153, 183, 32); /*will change color of text within the element on hover */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color:rgb(28 26 29 / 85%);
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    }
+    
+#content-wrap {
+padding-bottom: 2.5rem;    /* Footer height */
+}
