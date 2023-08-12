@@ -4,7 +4,7 @@ function Footer() {
 
   const footer ={
       "color":"white",
-      "backgroundColor": "rgb(121 180 236)",
+      "backgroundColor": "#0088ff",
       "position": "absolute",
       "left": "0",
       "bottom": "0",

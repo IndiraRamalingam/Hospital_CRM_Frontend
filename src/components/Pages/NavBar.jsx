@@ -9,10 +9,10 @@ import '../../App.css'
 function NavBar() {
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" className='mt-4'>
+      <Navbar collapseOnSelect expand="lg" className='navigation'>
       <Container>
-        <Navbar.Brand href="/" >
-            <Button className='rounded-pill' size="lg">HOSPITAL CRM</Button>
+        <Navbar.Brand href="/">
+            <Button className='rounded-pill' style={{color:'skyblue',fontWeight:'bolder',background:'whitesmoke'}} size="lg">HOSPITAL CRM</Button>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

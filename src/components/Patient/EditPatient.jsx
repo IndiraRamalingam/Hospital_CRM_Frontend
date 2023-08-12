@@ -39,13 +39,13 @@ function editPatient() {
           setDisease(res.patient.disease)
         }
         else{
-          setDisease('Patient yet not consulted Doctor')
+          setDisease('')
         }
         if(res.patient.prescription)
         {
           setPrescription(res.patient.prescription)
         }else{
-          setPrescription('Patient yet not consulted Doctor')
+          setPrescription('')
         }
         console.log("Patient details fetched successfully")
         }
@@ -63,18 +63,16 @@ function editPatient() {
       margin: "0rem 1.5rem",
     };
 
-    const all={name}
-    const handleUpdate =(event) =>
+  const handleUpdate =(event) =>
   {
     event.preventDefault();
-    prescribePatient({name})  
+    prescribePatient({name,age,disease,prescription})  
   }
 
-  const prescribePatient = async({name})=>{
+  const prescribePatient = async(details)=>{
     try{
-      const response = await instance.protectedInstance.put(`/doctor/prescribe_patients/${params.id}`,{name});
+      const response = await instance.protectedInstance.put(`/doctor/prescribe_patients/${params.id}`,details);
       console.log('update successful!');
-      console.log("TOKEN __> "+response.data.token);
       if (response.status === 200) {
         navigate('/doctorDashboard')
       }
@@ -107,6 +105,16 @@ function editPatient() {
                 </InputGroup>
                 <br/>
                 <InputGroup size="lg">
+                  <InputGroup.Text id="inputGroup-sizing-lg">Age</InputGroup.Text>
+                    <Form.Control
+                      aria-label="Large"
+                      aria-describedby="inputGroup-sizing-sm"
+                      value={age}
+                      onChange={(event) => setAge(event.target.value) }
+                    />
+                </InputGroup>
+                <br/>
+                <InputGroup size="lg">
                   <InputGroup.Text id="inputGroup-sizing-lg">Disease</InputGroup.Text>             
                     <Form.Control 
                       aria-label="Large"
@@ -128,11 +136,20 @@ function editPatient() {
                 
                 <br/>
                 <div className="text-center">
-                    <Button variant="primary" type="submit">
-                       Save
+                 
+                  <Button variant="primary" type="submit">
+                       Prescribe
                     </Button>
-    
-                </div>
+                 
+                  <Button variant="primary"
+                     onClick={() => {
+                      navigate('/doctorDashboard')
+                          console.log("Cancelled")
+                      }}>
+                       Cancel
+                    </Button>
+                       
+                    </div>
               </Form>           
         </div>
       </>

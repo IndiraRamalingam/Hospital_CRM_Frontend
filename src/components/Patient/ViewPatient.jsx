@@ -25,10 +25,10 @@ function viewPatient() {
     viewPatientDetails(params)
   }, []);
 
-  const viewPatientDetails = async({params}) =>{
+  const viewPatientDetails = async(params) =>{
     try{
 
-        const response = await instance.protectedInstance.get('/patient/patientDetails');
+        const response = await instance.protectedInstance.get(`/patient/patientDetails/${params.id}`);
         console.log(response)
         const res=response.data;
         setName(res.patient.name)
@@ -71,7 +71,7 @@ const formStyles = {
 
   return (
     <>
-      <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center" style={formStyles}>
+      <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center m-5" style={formStyles}>
             <Form >
               <br/>
               <div style={{ textAlign: "center" }} className='m-5'>
@@ -122,17 +122,8 @@ const formStyles = {
                     <Button variant="secondary" onClick={handleClose}>
                       Close
                     </Button>
-                    {/* <Button variant="primary" onClick={handleClose}>
-                      Save Changes
-                    </Button> */}
                   </Modal.Footer>
                 </Modal>
-                {/* <Form.Group className="mb-3">
-                    <Form.Control 
-                    size="lg"
-                    defaultValue={name}
-                    />
-                </Form.Group> */}
               </Form>           
         </div>
     </>

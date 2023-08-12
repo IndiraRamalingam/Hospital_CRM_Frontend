@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
-import viewPatient from '../Patient/viewPatient';
 import { Table , Dropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 

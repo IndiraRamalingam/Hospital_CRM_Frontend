@@ -4,57 +4,56 @@ import { Table , Dropdown} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SideBar from '../Pages/SideBar'
 
-function ViewDoctor() {
-
-  const[doctor,setDoctor]=useState([]);
+function ViewAllPatients() {
+  const[patient,setPatient]=useState([]);
   const [alarm, setAlarm] = useState(false);
 
   useEffect(()=>{
-    viewDoctor()
-},[alarm]);
+      viewPatient()
+  },[alarm]);
 
-const viewDoctor = async() =>{
-    try{
-        const response = await instance.protectedInstance.get('/admin/doctors');
-        console.log(response.data.alldoctors)
-        setDoctor(response.data.alldoctors) 
-          console.log("Doctors fetched successfully")
-    }
-    catch(error)
-    {
-        console.log("Error in fetching Doctors ", error)
-    }
-}
-
-// patient.map((p)=>{
-//     console.log("PPPPP --- > "+p.name , p.disease,p.email)
-// })
-
-const deleteDoctor = async(id) =>{
-    try{
-        let response=await instance.protectedInstance.delete(`/admin/deleteDoctor/${id}`)
-        if(response.status==200)
-        {
-            setAlarm(true);
-            console.log("Deleted Doctor successfully")
-        }
-    }
-    catch(error)
-    {
-        console.log("Error in deleting doctor ", error)
-    }
-}
+  const viewPatient = async() =>{
+      try{
+          const response = await instance.protectedInstance.get('/admin/patients');
+          console.log(response.data.allpatient)
+          setPatient(response.data.allpatient) 
+            console.log("Patients fetched successfully")
+      }
+      catch(error)
+      {
+          console.log("Error in fetching patients ", error)
+      }
+  }
+  
+  // patient.map((p)=>{
+  //     console.log("PPPPP --- > "+p.name , p.disease,p.email)
+  // })
+  
+  const deletePatient = async(id) =>{
+      try{
+          let response=await instance.protectedInstance.delete(`/admin/deletePatient/${id}`)
+          if(response.status==200)
+          {
+              setAlarm(true);
+              console.log("Deleted Patient successfully")
+          }
+      }
+      catch(error)
+      {
+          console.log("Error in deleting patient ", error)
+      }
+  }
 
   return (
-    <>
-   <div id="page-top">
-        <div id="wrapper">
+
+    <div id="page-top">
+      <div id="wrapper">
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
 
-            <div className='text-center'>
-                <h1>LIST OF DOCTORS</h1>
+              <div className='text-center'>
+                <h1>LIST OF PATIENTS</h1>
                 </div>      
                 <br/>
                     <Table striped >
@@ -62,21 +61,42 @@ const deleteDoctor = async(id) =>{
                           <tr >
                             <th>#</th>
                             <th >Name</th>
+                            <th>Age</th>
                             <th>Email ID</th>
+                            <th>Contact</th>
+                            <th>Address</th>
                             <th>Specialist</th>
-                            <th>Fee</th>
+                            <th>Status</th>
                             <th>Action</th>
                           </tr>
                         </thead> 
-                        {doctor.map((p,i) =>{ 
+                        {patient.map((p,i) =>{ 
+                    
+                            var statuss,color,prescribe;
+                            if(!p.disease && !p.prescription)
+                            {
+                                statuss="Yet to consult"
+                                color="danger"
+                            }
+                            else{
+                                statuss="Consulted"
+                                color="success"
+                            }
                             return(  
                                 <tbody key={p._id}  align='middle'>
                                 <tr>
                                     <td>{i+1}</td>
-                                    <td>{p.name}</td>      
+                                    <td>{p.name}</td>
+                                    <td>{p.age}</td>
                                     <td>{p.email}</td>
+                                    <td>{p.phone}</td>
+                                    <td>{p.address}</td>
                                     <td>{p.specialist}</td>
-                                    <td>{p.fee}</td>
+                                    <td>
+                                        <span className={`badge bg-${color}`}>
+                                        {statuss}
+                                        </span>
+                                    </td>
                                     <td>
                                     <Dropdown>
                                         <Dropdown.Toggle variant="primary" id="dropdown-basic">
@@ -85,13 +105,13 @@ const deleteDoctor = async(id) =>{
                                         <Dropdown.Menu>
                                         <Dropdown.Item
                                             as={Link}
-                                            to={`/editDoctor/${p._id}`}
+                                            to={`/editPatientByAdmin/${p._id}`}
                                         >
                                             Edit
                                         </Dropdown.Item>
                                         <Dropdown.Item
                                             onClick={() => {
-                                                deleteDoctor(p._id);
+                                                deletePatient(p._id);
                                             }}
                                         >
                                             Delete 
@@ -104,16 +124,15 @@ const deleteDoctor = async(id) =>{
                               );    
                             })}
                         </Table>
-                    </div>
-                  <a className="backtotop" href="#page-top">
+
+            </div>
+            <a className="backtotop" href="#page-top">
               <i className="fas fa-angle-up"></i>
             </a>        
           </div>
         </div>
       </div>
-
-    </>
   )
 }
 
-export default ViewDoctor
+export default ViewAllPatients

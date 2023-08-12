@@ -5,7 +5,7 @@ import Footer from './Footer'
 function Contact() {
   return (
     <>
-   
+    
       <div>Contact US</div>
     </>
    
