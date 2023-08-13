@@ -62,6 +62,7 @@ function ViewAllPatients() {
                             <th>#</th>
                             <th >Name</th>
                             <th>Age</th>
+                            <th>Gender</th>
                             <th>Email ID</th>
                             <th>Contact</th>
                             <th>Address</th>
@@ -88,6 +89,7 @@ function ViewAllPatients() {
                                     <td>{i+1}</td>
                                     <td>{p.name}</td>
                                     <td>{p.age}</td>
+                                    <td>{p.gender}</td>
                                     <td>{p.email}</td>
                                     <td>{p.phone}</td>
                                     <td>{p.address}</td>

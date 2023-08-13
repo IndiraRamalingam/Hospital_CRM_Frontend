@@ -7,7 +7,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import SideBar from '../Pages/SideBar'
 import { Table , Dropdown} from 'react-bootstrap';
 
-function createPatient() {
+function CreatePatientByAdmin() {
 
   const navigate=useNavigate();
   const[name,setName]=useState('');
@@ -240,4 +240,4 @@ function createPatient() {
   )
 }
 
-export default createPatient
+export default CreatePatientByAdmin

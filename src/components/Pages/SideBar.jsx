@@ -88,7 +88,7 @@ function SideBar() {
               <Link className="collapse-item" to="/viewAllPatients">
                 Patients List
               </Link>
-              <Link className="collapse-item" to="/createPatient">
+              <Link className="collapse-item" to="/createPatientByAdmin">
                 Add Patient
               </Link>
             </div>
@@ -100,7 +100,7 @@ function SideBar() {
 
      {/* <!-- Nav Item - Feedbacks --> */}
      <li className="nav-item">
-          <Link className="nav-link" to="/viewQueries">
+          <Link className="nav-link" to="/viewContact">
             <i className="fas fa-fw fa-chart-area"></i>
             <span>View Queries</span>
           </Link>

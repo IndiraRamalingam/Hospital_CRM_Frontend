@@ -103,7 +103,8 @@ function PatientSignIn() {
                     </Button>
     
                 </div>
-              </Form>           
+              </Form>  
+              <Link to='/createPatient'>New User?</Link>         
         </div>
       </>
     )

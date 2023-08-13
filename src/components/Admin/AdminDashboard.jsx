@@ -64,7 +64,7 @@ function AdminDashboard() {
                       </div>
                     </div>
                     <div className="mt-5 ms-5">        
-                    <Link to='/viewQueries'>
+                    <Link to='/viewContact'>
                     <h4 className="fw-bold mb-2">VIEW QUERIES</h4>
                     </Link>
                     </div>

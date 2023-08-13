@@ -7,7 +7,6 @@ import Contact from './components/Pages/Contact'
 import NavBar from './components/Pages/NavBar'
 import Footer from './components/Pages/Footer'
 import Charts from './components/Pages/Charts';
-import ViewQueries from './components/Pages/ViewQueries'
 import AdminSiginIn from './components/SignIn/AdminSiginIn'
 import DoctorSignIn from './components/SignIn/DoctorSignIn'
 import PatientSignIn from './components/SignIn/PatientSignIn'
@@ -21,6 +20,8 @@ import EditDoctor from './components/Doctor/EditDoctor'
 import ViewDoctor from './components/Doctor/ViewDoctor'
 import AdminDashboard from './components/Admin/AdminDashboard'
 import EditPatientByAdmin from './components/Admin/EditPatientByAdmin'
+import ViewContacts from './components/Admin/ViewContacts'
+import CreatePatientByAdmin from './components/Admin/CreatePatientByAdmin'
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/aboutUs' element={<AboutUs />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/viewQueries' element={<ViewQueries />} />
+          <Route path='/viewContact' element={<ViewContacts/>}/>
           <Route path='/charts' element={<Charts />}/>
           <Route path='/adminsignin' element={<AdminSiginIn />} />
           <Route path='/doctorsignin' element={<DoctorSignIn />} />
@@ -49,6 +50,7 @@ function App() {
           <Route path='/editDoctor/:id' element={<EditDoctor/>}/>
           <Route path='/viewDoctor' element={<ViewDoctor/>}/>
           <Route path='/adminDashboard' element={<AdminDashboard />} />
+          <Route path='/createPatientByAdmin' element={<CreatePatientByAdmin />}/>
           <Route path='editPatientByAdmin/:id' element={<EditPatientByAdmin/>}/>
           
         </Routes>

@@ -61,8 +61,7 @@ function DoctorDashboard() {
                     <th>Action</th>
                   </tr>
                 </thead> 
-                {patient.map((p,i) =>{ 
-            
+                {patient.map((p,i) =>{             
                     var statuss,color,prescribe;
                     if(!p.disease && !p.prescription)
                     {
