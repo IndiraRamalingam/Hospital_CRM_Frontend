@@ -3,8 +3,9 @@ import React from 'react'
 function Footer() {
 
   const footer ={
-      "color":"white",
-      "backgroundColor": "#0088ff",
+      "color":"#301091",
+      "font-weight":"bolder",
+      "backgroundColor": "white",
       "position": "absolute",
       "left": "0",
       "bottom": "0",
@@ -12,13 +13,20 @@ function Footer() {
       "height" : "2.5rem",
       "display":"flex",
      " alignItems": "center",
-      "justifyContent": "center"
+      "justifyContent": "center",
+    
+      
   }
 
   return (
+    <>
       <div style={footer}>
-            Copyright © Hospital 2023
-        </div>
+        <br/><br/>
+            Copyright 2023 - All Reserved by Healthcare CRM | Privacy Policy | Terms
+        </div> 
+   
+       
+        </>
   )
 }
 

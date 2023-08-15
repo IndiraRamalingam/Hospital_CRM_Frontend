@@ -11,17 +11,20 @@ import AdminSiginIn from './components/SignIn/AdminSiginIn'
 import DoctorSignIn from './components/SignIn/DoctorSignIn'
 import PatientSignIn from './components/SignIn/PatientSignIn'
 import CreatePatient from './components/Patient/CreatePatient'
-import EditPatient from './components/Patient/EditPatient'
-import ViewPatient from './components/Patient/viewPatient'
+import EditPatient from './components/Doctor/EditPatient'
+import ViewPatient from './components/Patient/ViewPatient'
+import BookAppointment from './components/Patient/BookAppointment'
 import ViewAllPatients from './components/Admin/ViewAllPatients'
 import DoctorDashboard from './components/Doctor/DoctorDashboard'
-import CreateDoctor from './components/Doctor/CreateDoctor'
-import EditDoctor from './components/Doctor/EditDoctor'
-import ViewDoctor from './components/Doctor/ViewDoctor'
+import CreateDoctor from './components/Admin/CreateDoctor'
+import EditDoctor from './components/Admin/EditDoctor'
+import ViewDoctor from './components/Admin/ViewDoctor'
 import AdminDashboard from './components/Admin/AdminDashboard'
 import EditPatientByAdmin from './components/Admin/EditPatientByAdmin'
 import ViewContacts from './components/Admin/ViewContacts'
 import CreatePatientByAdmin from './components/Admin/CreatePatientByAdmin'
+import PatientDashboard from './components/Patient/PatientDashboard'
+import BookHistory from './components/Patient/BookHistory'
 
 
 function App() {
@@ -43,7 +46,10 @@ function App() {
           <Route path='/patientsignin' element={<PatientSignIn />} />
           <Route path='/createPatient' element={<CreatePatient/>} />
           <Route path='/editPatient/:id' element={<EditPatient />} />
+          <Route path='/bookappointment/:id' element={<BookAppointment/>} />
+          <Route path='/bookHistory/:id' element={<BookHistory />}/>
           <Route path='/viewPatient/:id' element={<ViewPatient />} />
+          <Route path='/patientDashboard/:id' element={<PatientDashboard/>}/>
           <Route path='/viewAllPatients' element={<ViewAllPatients />} />
           <Route path='/doctorDashboard' element={<DoctorDashboard />} />
           <Route path='/createDoctor'element={<CreateDoctor/>}/>
@@ -52,6 +58,7 @@ function App() {
           <Route path='/adminDashboard' element={<AdminDashboard />} />
           <Route path='/createPatientByAdmin' element={<CreatePatientByAdmin />}/>
           <Route path='editPatientByAdmin/:id' element={<EditPatientByAdmin/>}/>
+
           
         </Routes>
       </BrowserRouter>

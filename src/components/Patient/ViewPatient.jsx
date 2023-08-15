@@ -1,15 +1,13 @@
 import React,{ useEffect, useState } from 'react'
 import instance from '../services/instance';
-import { Link, useParams } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
+import { Link, useParams,useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { Modal, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 
 function viewPatient() {
 
-  const params=useParams();
-  console.log(params)
+  const params=useParams()
   const[name,setName]=useState('');
   const[age,setAge]=useState('');
   const[email,setEmail]=useState('');
@@ -17,9 +15,11 @@ function viewPatient() {
   const[phone,setPhone]=useState('');
   const[disease,setDisease]=useState('');
   const[prescription,setPrescription]=useState('');
-  const [showModal, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const[date,setDate]=useState('')
+  const[specialist,setSpecialist]=useState('')
+  const[time,setTime]=useState('')
+  const[color,setColor] = useState('')
+  const navigate=useNavigate();
 
   useEffect(() => {
     viewPatientDetails(params)
@@ -36,19 +36,48 @@ function viewPatient() {
         setEmail(res.patient.email)
         setAddress(res.patient.address)
         setPhone(res.patient.phone)
-        if(res.patient.disease)
-        {
-          setDisease(res.patient.disease)
-        }
-        else{
-          setDisease('Patient yet not consulted Doctor')
-        }
-        if(res.patient.prescription)
-        {
-          setPrescription(res.patient.prescription)
-        }else{
-          setPrescription('Patient yet not consulted Doctor')
-        }
+        setDate(res.patient.date)
+        setTime(res.patient.time)
+        // setSpecialist(res.patient.specialist)
+        // if(res.patient.disease)
+        // {
+        //   setDisease(res.patient.disease)
+        //   setColor('black')
+        // }
+        // else{
+        //   setDisease('Yet to Consult Doctor')
+        //   setColor('red')
+        // }
+        // if(res.patient.prescription)
+        // {
+        //   setPrescription(res.patient.prescription)
+        //   setColor('black')
+        // }else{
+        //   setPrescription('Yet to Consult Doctor')
+        //   setColor('red')
+        // }
+        // if(res.patient.date){
+        //   setDate(res.patient.date)
+        //   setColor('black')
+        // }else{
+        //   setDate('Yet to book appointment date')
+        //   setColor('red')
+        // }
+        // if(res.patient.time){
+        //   setTime(res.patient.time)
+        //   setColor('black')
+        // }else{
+        //   setTime('Yet to book appointment time')
+        //   setColor('red')
+        // }
+        // if(res.patient.specialist){
+        //   setSpecialist(res.patient.specialist)
+        //   setColor('black')
+        // }else{
+        //   setSpecialist('Yet to book specialist')
+        //   setColor('red')
+        // }
+        
         
 
         console.log("Patient details fetched successfully")
@@ -58,74 +87,83 @@ function viewPatient() {
     console.log("Error in fetching patient details ", error)
 }
 }
-console.log("P_Name  --> "+name)
-
-const formStyles = {
-  background: "whitesmoke",
-  boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-  width: "45rem",
-  padding: "2rem",
-  borderRadius: "1rem",
-  margin: "0rem 1.5rem",
-};
 
   return (
     <>
-      <div className="mx-auto col-10 col-md-8 col-lg-4 align-items-center m-5" style={formStyles}>
-            <Form >
-              <br/>
-              <div style={{ textAlign: "center" }} className='m-5'>
-                <h4 >WELCOME {name} !!!</h4>
-                <br/>
-                <p >You can now view your reports by clicking the button below,</p>
-                <Button variant="primary" onClick={handleShow} className='mb-5'>
-                    View Report
-                </Button>
-                
-              </div>
-              
-              <Modal show={showModal} onHide={handleClose} centered style={{ textAlign: "center" }}>
-                  <Modal.Header closeButton>
-                    <Modal.Title >Report</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <Table striped>                   
+       <section className="h-100" style={{background:"#dbe0e3"}}>
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0">
+        <div className="col-xl-6 d-xl-block">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaOZas1O1wRYg5I8CllXlUoxw707WKwgPRiw&usqp=CAU"
+            alt="Sample photo" className="img-fluid"
+            style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'500px'}}/>
+        </div>
+        <div className="col-xl-6">
+          <Form >
+          <div className="card-body p-md-5 text-black">
+            <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Your Details</h3>
+         
+            <Table striped>                   
                       <tbody>
                         <tr>
-                          <td>Name</td>
+                          <td style={{fontWeight:'bolder'}}>Name</td>
                           <td>{name}</td>
                         </tr>
                         <tr>
-                          <td>Age</td>
+                          <td style={{fontWeight:'bolder'}}>Age</td>
                           <td>{age}</td>
                         </tr>
                         <tr>
-                          <td>Email</td>
+                          <td style={{fontWeight:'bolder'}}>Email</td>
                           <td>{email}</td>
                         </tr>
                         <tr>
-                          <td>Contact</td>
+                          <td style={{fontWeight:'bolder'}}>Contact</td>
                           <td>{phone}</td>
                         </tr>
                         <tr>
-                          <td>Disease</td>
-                          <td>{disease}</td>
+                          <td style={{fontWeight:'bolder'}}>Address</td>
+                          <td>{address}</td>
+                        </tr>
+                        {/* <tr>
+                          <td style={{fontWeight:'bolder'}}>Date</td>
+                          <td style={{'color':`${color}`}}>{date}</td>
                         </tr>
                         <tr>
-                          <td>Prescription</td>
-                          <td>{prescription}</td>
+                          <td style={{fontWeight:'bolder'}}>Specialist</td>
+                          <td style={{'color':`${color}`}}>{specialist}</td>
                         </tr>
+                        <tr>
+                          <td style={{fontWeight:'bolder'}}>Time</td>
+                          <td style={{'color':`${color}`}}>{time}</td>
+                        </tr>
+                        <tr>
+                          <td style={{fontWeight:'bolder'}}>Disease</td>
+                          <td style={{'color':`${color}`}}>{disease}</td>
+                        </tr>
+                        <tr>
+                          <td style={{fontWeight:'bolder'}}>Prescription</td>
+                          <td style={{'color':`${color}`}}>{prescription}</td>
+                        </tr>
+                       */}
                       </tbody>
                     </Table>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                    <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
+                    onClick={()=>{
+                    navigate(`/patientDashboard/${params.id}`)
+                  }}>Close</button>
+                  </div>
               </Form>           
+              </div>
         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -12,7 +12,9 @@ function NavBar() {
       <Navbar collapseOnSelect expand="lg" className='navigation'>
       <Container>
         <Navbar.Brand href="/">
-            <Button className='rounded-pill' style={{color:'skyblue',fontWeight:'bolder',background:'whitesmoke'}} size="lg">HOSPITAL CRM</Button>
+
+              <img src='../src/assets/Logo.avif' width={150} height={80} />
+     
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

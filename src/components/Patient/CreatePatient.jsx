@@ -1,11 +1,8 @@
 import React,{ useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import SideBar from '../Pages/SideBar'
-import { Table , Dropdown} from 'react-bootstrap';
+
 
 function createPatient() {
 
@@ -13,8 +10,6 @@ function createPatient() {
   const[name,setName]=useState('');
   const[age,setAge]=useState('');
   const[gender,setGender]=useState('');
-  const[values,setValues]=useState([])
-  const[specialist,setSpecialist]=useState()
   const[email,setEmail]=useState('');
   const[password,setPassword]=useState('');
   const[confirmpassword,setConfirmpassword]=useState('');
@@ -24,46 +19,13 @@ function createPatient() {
   const[msgg,setMsgg]=useState('');
   const[infor,setInfor]=useState('');
 
-  useEffect(()=>{
-    getDoctorDetails();
-  },[]);
-
-  console.log("VALUES   "+values)
-  const getDoctorDetails = async() =>{
-    try{
-        const response = await instance.protectedInstance.get('/admin/getAllDoctorName');
-        console.log(response.data.alldoctors)
-        setValues(response.data.alldoctors)
-        // let user=(response.data.alldoctors[0].name)
-        // console.log(response.data.alldoctors[0].name)
-        //  setSpecialistt(response.data.alldoctors)
-        //  setSpecialist(...user)
-        // console.log("DSFSDF   "+specialist)
-        console.log("Doctor details fetched successfully")
-        }
-        catch(error)
-      {
-            console.log("Error in fetching doctor details ", error)
-        }
-    }
-   
-    const formStyles = {
-      background: "whitesmoke",
-      boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-      width: "45rem",
-      padding: "2rem",
-      borderRadius: "1rem",
-      margin: "0rem 1.5rem",
-    };
 
   const handleCreate =(event) =>
   {
     event.preventDefault();
-    //console.log("RESULT bfre  "+specialist.specialist)
     if(password == confirmpassword)
     {
-      createDoctor({name,password,gender,email,specialist,age,address,phone}) 
-      //console.log("RESULT   "+specialist.specialist)
+      createDoctor({name,password,gender,email,age,address,phone}) 
     }
     else{
       setMsgg("Password is not matching")
@@ -73,170 +35,143 @@ function createPatient() {
 
   const createDoctor = async(details)=>{
     try{
-      const response = await instance.protectedInstance.post('/admin/addPatient',details);
+      const response = await instance.authInstance.post('/patient/signup',details);
       console.log('Created successful!');
-      setMsg('New Patient Added Succesfully')
-      setMsgg('')
-      setInfor("Back to Dashboard")
+      setMsg('Your Registration has been done successfully!!  ')
+      setMsgg(''), setName(''), setAge(''),setEmail(''),setAddress(''),setConfirmpassword(''),setPassword(''),setGender(''),setPhone('')
+      setInfor(" Click here to LogIn")
     }
     catch(error)
     {
-      console.log("Error in creating doctor "+error)
+      console.log("Error in creating patient "+error)
       setMsg('')
-      setMsgg("Please fill all the fields to add new doctor");
+      setMsgg("Please fill all the fields to register");
     }
 
   }
 
   return (
-    <div id="page-top">
-        <div id="wrapper">
-        <SideBar/>
-          <div id="content-wrapper" className="d-flex flex-column">
-            <div id="content">
 
-            <div className="mx-auto col-10 col-md-8 col-lg-4 mt-4" style={formStyles}>
-            <Form onSubmit={handleCreate}>
-              <div>
-                <h4 style={{ textAlign: "center" }}>Add New Patient</h4>
-                <br/>
-              </div>
 
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Name</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={name}
-                      onChange={(event) => setName(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Age</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={age}
-                      onChange={(event) => setAge(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Password</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={password}
-                      onChange={(event) => setPassword(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Confirm Password</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={confirmpassword}
-                      onChange={(event) => setConfirmpassword(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-               
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Address</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={address}
-                      onChange={(event) => setAddress(event.target.value) }
-                    />       
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Phone</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={phone}
-                      onChange={(event) => setPhone(event.target.value) }
-                    />       
-                </InputGroup>
-                
-                <br/>
+// Patient Registration
 
-              <select onChange={(e)=>setSpecialist(e.target.value)}>
-                {
-                  values.map((opts,i)=>
-                  <option key={i}>{opts.specialist}</option>
-                  )
-                }
-              </select>
-              <h1>{specialist}</h1>
-
-              <input type='radio' name='gender' value="Male" onChange={e=>setGender(e.target.value)} /> Male
-              <input type='radio' name='gender' value="Female" onChange={e=>setGender(e.target.value)} /> Female
-
-              <h1>{gender}</h1>
-
-                {/* <Dropdown>
-                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                Specialist
-                </Dropdown.Toggle>
-                <Dropdown.Menu               
-                onChange={(event) => setSpecialist(event.target.value)}   >
-                {specialistt.map((p) =>{                 
-                    return(
-                      <Dropdown.Item key={p._id} value={p.specialist}>
-                      {p.specialist}
-                     </Dropdown.Item>
-                    );
-                  })}
-                </Dropdown.Menu>
-              </Dropdown> */}
-              <br/>
+    <>
+      <section className="h-100" style={{background:"#dbe0e3"}}>
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0">
+        <div className="col-xl-6 d-none d-xl-block">
+          <img src="../src/assets/patientRegister.webp"
+            alt="Sample photo" className="img-fluid"
+            style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'750px'}}/>
+        </div>
+        <div className="col-xl-6">
+        <Form onSubmit={handleCreate}>
+          <div className="card-body p-md-5 text-black">
+            <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Register as Patient</h3>
               
-
-                <p style={{ color: "green" }}>{msg}<Link to="/viewAllPatients">{infor}</Link></p>
-                <p style={{ color: "red" }}>{msgg}</p>
-                
-                <br/>
-
-                <div className="text-center">
-                 
-                  <Button variant="primary" type="submit">
-                       Add Patient
-                    </Button>
-                 
-                  <Button variant="primary"
-                     onClick={() => {
-                      navigate('/adminDashboard')
-                          console.log("Cancelled")
-                      }}>
-                       Cancel
-                    </Button>
-                       
-                    </div>
-              </Form>           
-        </div>
-``
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              value={name}
+              placeholder='Patient Name'
+              onChange={(event) => setName(event.target.value)}
+              />
             </div>
-            <a className="backtotop" href="#page-top">
-              <i className="fas fa-angle-up"></i>
-            </a>        
+
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              placeholder='Age'
+              value={age}
+              onChange={(event) => setAge(event.target.value) }/>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="email" className="form-control form-control-lg" 
+              placeholder="Email ID"
+              value={email}
+              onChange={(event) => setEmail(event.target.value) }/>
+            </div>
+
+            <div className="row">
+              <div className="col-md-5 mb-4">
+                <div className="form-outline">
+                  <input type="text" className="form-control form-control-lg" 
+                  placeholder='Password'
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value) }/>
+                </div>
+              </div>
+              <div className="col-md-7 mb-4">
+                <div className="form-outline">
+                  <input type="text" className="form-control form-control-lg" 
+                  placeholder='Confirm Password'
+                  value={confirmpassword}
+                  onChange={(event) => setConfirmpassword(event.target.value) }/>
+                </div>
+              </div>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              placeholder='Address'
+              value={address}
+              onChange={(event) => setAddress(event.target.value) }/>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              placeholder='Contact Number'
+              value={phone}
+              onChange={(event) => setPhone(event.target.value) }/>
+            </div>
+
+            <div className="d-md-flex justify-content-start align-items-center mb-4 py-2" style={{color:"rgb(63 97 118)",'fontSize':'18px'}}>
+              <h5 className="mb-0 me-4" >Gender: </h5>
+              <br/>
+              <div className="form-check form-check-inline mb-0 me-4">
+                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                  value="Female" onChange={e=>setGender(e.target.value)} />
+                <label className="form-check-label" htmlFor="femaleGender">Female</label>
+              </div>
+              <div className="form-check form-check-inline mb-0 me-4">
+                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                  value="Male" onChange={e=>setGender(e.target.value)} />
+                <label className="form-check-label" htmlFor="maleGender">Male</label>
+              </div>
+              <div className="form-check form-check-inline mb-0">
+                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
+                  value="Other" onChange={e=>setGender(e.target.value)} />
+                <label className="form-check-label" htmlFor="otherGender">Other</label>
+              </div>
+            </div>
+            
+            <div>
+            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/patientsignin">{infor}</Link></p>
+            <p style={{ color: "red" }}>{msgg}</p>
+            </div>
+
+            <div className="d-flex justify-content-end pt-3">
+              <button type="button" className="btn btn-light btn-lg"
+              onClick={() => {
+                navigate('/patientsignin')
+                    console.log("Cancelled")
+                }}>
+              Cancel</button>
+              <button type="Submit" className="btn btn-warning btn-lg ms-2">Submit form</button>
+            </div>
+
           </div>
+          </Form>
         </div>
-      </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </section>
+    </>
   )
 }
 
