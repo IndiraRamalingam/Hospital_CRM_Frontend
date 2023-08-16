@@ -2,7 +2,7 @@ import React,{ useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-
+import patient from "../../assets/patientRegister.webp"
 
 function createPatient() {
 
@@ -63,7 +63,7 @@ function createPatient() {
         <div className="card card-registration my-4">
         <div className="row g-0">
         <div className="col-xl-6 d-none d-xl-block">
-          <img src="../src/assets/patientRegister.webp"
+          <img src={patient}
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'750px'}}/>
         </div>

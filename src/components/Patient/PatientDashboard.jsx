@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link, useParams,useNavigate } from 'react-router-dom';
+import view from "../../assets/ViewReport.png"
+import appointment from "../../assets/BookAppointment.png"
+import history from "../../assets/BookHistory.png"
 
 function PatientDashboard() {
     const params=useParams();
@@ -18,7 +21,7 @@ function PatientDashboard() {
             
                 <div className="row">
                 <div className="col-4 panel text-center">  
-                <figure className="d-flex justify-center" ><img src="../src/assets/ViewReport.png" alt="View Report" /></figure>                  
+                <figure className="d-flex justify-center" ><img src={view} alt="View Report" /></figure>                  
                   <button type="button" class="btn btn-outline-info" 
                   onClick={()=>{
                     navigate(`/viewPatient/${params.id}`)
@@ -27,7 +30,7 @@ function PatientDashboard() {
                 </div>
 
                 <div className="col-4 panel text-center">
-                <figure className="d-flex justify-center" ><img src="../src/assets/BookAppointment.png" alt="Book Appointment"  /></figure>
+                <figure className="d-flex justify-center" ><img src={appointment} alt="Book Appointment"  /></figure>
                 <button type="button" className="btn btn-outline-info" 
                   onClick={()=>{
                     navigate(`/bookappointment/${params.id}`)
@@ -36,7 +39,7 @@ function PatientDashboard() {
                 </div>
 
                 <div className="col-4 panel text-center">                            
-                <figure className="d-flex justify-center" ><img src="../src/assets/BookHistory.png" alt="Admin Login"   /></figure>								
+                <figure className="d-flex justify-center" ><img src={history} alt="Admin Login"   /></figure>								
                 <button type="button" className="btn btn-outline-info" 
                   onClick={()=>{
                     navigate(`/bookHistory/${params.id}`)

@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import instance from '../services/instance'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import doctor from "../../assets/DoctorSignIn.avif"
 
 function DoctorSignIn() {
   const[email,setEmail]=useState('');
@@ -66,7 +67,7 @@ function DoctorSignIn() {
         <div className="card card-registration my-4">
         <div className="row g-0">
         <div className="col-xl-6  d-xl-block">
-          <img src="../src/assets/DoctorSignIn.avif"
+          <img src={doctor}
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px'}}/>
         </div>

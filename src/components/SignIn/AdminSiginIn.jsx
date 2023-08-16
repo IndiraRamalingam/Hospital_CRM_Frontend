@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import instance from '../services/instance'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import admin from "../../assets/AdminResgister.jpg"
 
 function AdminSiginIn() {
  const[email,setEmail]=useState('');
@@ -63,43 +64,6 @@ function AdminSiginIn() {
   };
 
     return (
-//       <>
-//         <div className="mx-auto col-10 col-md-8 col-lg-4 mt-5" style={formStyles}>
-//             <Form onSubmit={handleSignin}>
-//               <div>
-//                 <h4 style={{ textAlign: "center" }}>ADMIN LOGIN</h4>
-//                 <br/>
-//               </div>
-//                 <Form.Group className="mb-3">
-//                     <Form.Control 
-//                     size="lg"
-//                     type="email" 
-//                     placeholder="Email ID"
-//                     value={email}
-//                     onChange={(event) => setEmail(event.target.value) }
-//                     />
-//                 </Form.Group>
-// 
-//                 <Form.Group className="mb-3">
-//                     <Form.Control 
-//                     size="lg"
-//                     type='password'
-//                     value={password}
-//                     placeholder='Password'
-//                     onChange={(event) => setPassword(event.target.value) }
-//                     />
-//                 </Form.Group>
-//                 
-//                 <p style={{ color: "red" }}>{msg}</p>
-// 
-//                 <div className="text-center">
-//                     <Button variant="primary" type="submit">
-//                        LogIn
-//                     </Button>
-//                 </div>
-//               </Form>           
-//         </div>
-//       </>
 
       <>
       <section className="h-100" style={{background:"#dbe0e3"}}>
@@ -109,7 +73,7 @@ function AdminSiginIn() {
       <div className="card card-registration my-4">
       <div className="row g-0">
       <div className="col-xl-6 d-none d-xl-block">
-        <img src="../src/assets/AdminResgister.jpg"
+        <img src={admin}
           alt="Sample photo" className="img-fluid"
           style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px'}}/>
       </div>
