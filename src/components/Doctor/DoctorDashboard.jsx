@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
-
+import doctor from "../../assets/DoctorDashboard.webp"
 function DoctorDashboard() {
 
     const params=useParams();
@@ -35,7 +35,7 @@ function DoctorDashboard() {
         <div className="row g-0">
         
         <div className="col-xl-5 d-xl-block">
-          <img src="../src/assets/DoctorDashboard.webp"
+          <img src={doctor}
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px','width':'25rem'}}/>
         </div>

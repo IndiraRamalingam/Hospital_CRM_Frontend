@@ -2,7 +2,6 @@ import React,{ useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from "react-bootstrap";
-import InputGroup from 'react-bootstrap/InputGroup';
 import { Table } from 'react-bootstrap';
 
 function editPatient() {
