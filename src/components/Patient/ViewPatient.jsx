@@ -13,12 +13,6 @@ function viewPatient() {
   const[email,setEmail]=useState('');
   const[address,setAddress]=useState('');
   const[phone,setPhone]=useState('');
-  const[disease,setDisease]=useState('');
-  const[prescription,setPrescription]=useState('');
-  const[date,setDate]=useState('')
-  const[specialist,setSpecialist]=useState('')
-  const[time,setTime]=useState('')
-  const[color,setColor] = useState('')
   const navigate=useNavigate();
 
   useEffect(() => {
@@ -38,48 +32,6 @@ function viewPatient() {
         setPhone(res.patient.phone)
         setDate(res.patient.date)
         setTime(res.patient.time)
-        // setSpecialist(res.patient.specialist)
-        // if(res.patient.disease)
-        // {
-        //   setDisease(res.patient.disease)
-        //   setColor('black')
-        // }
-        // else{
-        //   setDisease('Yet to Consult Doctor')
-        //   setColor('red')
-        // }
-        // if(res.patient.prescription)
-        // {
-        //   setPrescription(res.patient.prescription)
-        //   setColor('black')
-        // }else{
-        //   setPrescription('Yet to Consult Doctor')
-        //   setColor('red')
-        // }
-        // if(res.patient.date){
-        //   setDate(res.patient.date)
-        //   setColor('black')
-        // }else{
-        //   setDate('Yet to book appointment date')
-        //   setColor('red')
-        // }
-        // if(res.patient.time){
-        //   setTime(res.patient.time)
-        //   setColor('black')
-        // }else{
-        //   setTime('Yet to book appointment time')
-        //   setColor('red')
-        // }
-        // if(res.patient.specialist){
-        //   setSpecialist(res.patient.specialist)
-        //   setColor('black')
-        // }else{
-        //   setSpecialist('Yet to book specialist')
-        //   setColor('red')
-        // }
-        
-        
-
         console.log("Patient details fetched successfully")
     }
     catch(error)
@@ -128,27 +80,6 @@ function viewPatient() {
                           <td style={{fontWeight:'bolder'}}>Address</td>
                           <td>{address}</td>
                         </tr>
-                        {/* <tr>
-                          <td style={{fontWeight:'bolder'}}>Date</td>
-                          <td style={{'color':`${color}`}}>{date}</td>
-                        </tr>
-                        <tr>
-                          <td style={{fontWeight:'bolder'}}>Specialist</td>
-                          <td style={{'color':`${color}`}}>{specialist}</td>
-                        </tr>
-                        <tr>
-                          <td style={{fontWeight:'bolder'}}>Time</td>
-                          <td style={{'color':`${color}`}}>{time}</td>
-                        </tr>
-                        <tr>
-                          <td style={{fontWeight:'bolder'}}>Disease</td>
-                          <td style={{'color':`${color}`}}>{disease}</td>
-                        </tr>
-                        <tr>
-                          <td style={{fontWeight:'bolder'}}>Prescription</td>
-                          <td style={{'color':`${color}`}}>{prescription}</td>
-                        </tr>
-                       */}
                       </tbody>
                     </Table>
                     <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}

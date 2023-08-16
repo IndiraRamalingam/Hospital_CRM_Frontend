@@ -19,29 +19,28 @@ function Home() {
 		<div className="container">
       <br/>
 			<div className="title line text-center">
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 			</div>
       <br/>
 
 							<div className="row">
 							<div className="col-4">
-							<a href="Patient Login" className="panel text-center" >
-								<figure className="d-flex justify-center" ><img src="../src/assets/PatientsIcon.png" alt="Patient Login" /></figure>
-								
+							<div className="panel text-center" >
+								<figure className="d-flex justify-center" ><img src="../src/assets/PatientsIcon.png" alt="Patient Login" /></figure>								
                 <Link to='/patientsignin'><h5>Patient Login</h5></Link>
-							</a>
+							</div>
 						</div>
 				      <div className="col-4">
-							<a href="Doctor Login" className="panel text-center">
+							<div className="panel text-center" >
               <figure className="d-flex justify-center" ><img src="../src/assets/DoctorIcon.png" alt="Doctor Login"  /></figure>
                 <Link to='/doctorsignin'><h5>Doctor Login</h5></Link>
-							</a>
+							</div>
 						</div>
 				      <div className="col-4">
-							<a href="Admin Login" className="panel text-center" >
+							<div className="panel text-center" >
               <figure className="d-flex justify-center" ><img src="../src/assets/AdminIcon.png" alt="Admin Login"  /></figure>								
                 <Link to='/adminsignin'><h5>Admin Login</h5></Link>
-							</a>
+							</div>
 						</div>
 				</div>
       <br/><br/>

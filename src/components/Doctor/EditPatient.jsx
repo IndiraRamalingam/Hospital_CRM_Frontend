@@ -1,22 +1,26 @@
 import React,{ useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Modal, Button, Form } from "react-bootstrap";
 import InputGroup from 'react-bootstrap/InputGroup';
+import { Table } from 'react-bootstrap';
 
 function editPatient() {
 
   const params=useParams();
-  console.log(params)
+
   const navigate=useNavigate();
   const[name,setName]=useState('');
   const[age,setAge]=useState('');
-  const[email,setEmail]=useState('');
-  const[address,setAddress]=useState('');
-  const[phone,setPhone]=useState('');
   const[disease,setDisease]=useState('');
   const[prescription,setPrescription]=useState('');
+  const[newdisease,setNewDisease]=useState([]);
+  const[newprescription,setNewPrescription]=useState([]);
+  const[errormsg,setErrorMsg]=useState('')
+  const[msg,setMsg]=useState('')
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
  useEffect(() => {
   getPatientDetails(params)
@@ -27,26 +31,12 @@ function editPatient() {
     try{
       console.log(`PPPARRA ${params.id}`)
         const response = await instance.protectedInstance.get(`/doctor/get_patients/${params.id}`);
-        console.log(response)
+        console.log(response.data.patient)
         const res=response.data;
         setName(res.patient.name)
         setAge(res.patient.age)
-        setEmail(res.patient.email)
-        setAddress(res.patient.address)
-        setPhone(res.patient.phone)
-        if(res.patient.disease)
-        {
-          setDisease(res.patient.disease)
-        }
-        else{
-          setDisease('')
-        }
-        if(res.patient.prescription)
-        {
-          setPrescription(res.patient.prescription)
-        }else{
-          setPrescription('')
-        }
+        setNewDisease(response.data.patient.disease)
+        setNewPrescription(response.data.patient.prescription)
         console.log("Patient details fetched successfully")
         }
         catch(error)
@@ -54,19 +44,17 @@ function editPatient() {
             console.log("Error in fetching patient details ", error)
         }
     }
-    const formStyles = {
-      background: "whitesmoke",
-      boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-      width: "45rem",
-      padding: "2rem",
-      borderRadius: "1rem",
-      margin: "0rem 1.5rem",
-    };
-
   const handleUpdate =(event) =>
   {
     event.preventDefault();
-    prescribePatient({name,age,disease,prescription})  
+    if(disease !='' && prescription!='')
+    {
+      prescribePatient({disease,prescription}) 
+    }
+    else{
+      setErrorMsg('Please fill all the fields')
+    }
+     
   }
 
   const prescribePatient = async(details)=>{
@@ -74,7 +62,9 @@ function editPatient() {
       const response = await instance.protectedInstance.put(`/doctor/prescribe_patients/${params.id}`,details);
       console.log('update successful!');
       if (response.status === 200) {
-        navigate('/doctorDashboard')
+        setMsg("Prescription Added")    
+        setErrorMsg('') , setDisease(''),setPrescription('')
+        window.location.reload(false); 
       }
     }
     catch(error)
@@ -84,74 +74,129 @@ function editPatient() {
 
   }
 
+
     return (
       <>
-      {/* <div className="card p-5"> */}
-         <div className="mx-auto col-10 col-md-8 col-lg-4 mt-4" style={formStyles}>
-            <Form onSubmit={handleUpdate}>
-              <div>
-                <h4 style={{ textAlign: "center" }}>Prescribe Medicines Below</h4>
-                <br/>
-              </div>
+        <section className="h-100" style={{background:"#dbe0e3"}}>
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0"></div>
+        <div className="card-body p-md-5 text-black">
+        <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Prescription History</h3>
+    </div>
+    <div className='row'>
 
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Name</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={name}
-                      onChange={(event) => setName(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Age</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={age}
-                      onChange={(event) => setAge(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Disease</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={disease}
-                      onChange={(event) => setDisease(event.target.value) }
-                    />       
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Medicine</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={prescription}
-                      onChange={(event) => setPrescription(event.target.value) }
-                    />       
-                </InputGroup>
-                
-                <br/>
-                <div className="text-center">
-                 
-                  <Button variant="primary" type="submit">
-                       Prescribe
-                    </Button>
-                 
-                  <Button variant="primary"
-                     onClick={() => {
-                      navigate('/doctorDashboard')
-                          console.log("Cancelled")
-                      }}>
-                       Cancel
-                    </Button>
-                       
-                    </div>
-              </Form>           
+    <div className='col-4'>
+        <Table striped >
+                <thead align='middle'>
+                  <tr >
+                    <th>#</th>
+                  </tr>
+                </thead> 
+                <tbody>                   
+                    {newdisease.map((s,i)=>{
+                        return(
+                            <tr align='middle' >
+                                <td key={s.id}> {i+1}</td>                         
+                            </tr>
+                        )
+                    })}
+                </tbody>
+         </Table>
         </div>
+
+        <div className='col-4'>
+        <Table striped >
+                <thead align='middle'>
+                  <tr >
+                    <th >Disease/Complaints</th>
+                  </tr>
+                </thead> 
+                <tbody>                 
+                    {newdisease.map((s,i)=>{
+                        return(
+                            <tr align='middle'>                      
+                                <td key={s.id}>{s}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+         </Table>
+        </div>
+        <div className='col-4'>
+        <Table striped >
+                <thead align='middle'>
+                  <tr >
+                    <th >Prescription</th>
+                  </tr>
+                </thead> 
+                <tbody>                 
+                    {newprescription.map((s,i)=>{
+                        return(
+                            <tr align='middle'>                      
+                                <td key={s.id}>{s}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+         </Table>
+        </div>
+    </div>
+    
+
+    <div className="d-flex justify-content-end pt-3">
+              <button type="button" className="btn btn-light btn-lg"
+              onClick={() => {
+                navigate(`/viewPatientList/${params.id}`)
+                }}>
+              close</button>
+              <button type="Submit" className="btn btn-warning btn-lg ms-2" onClick={handleShow}>Add Prescription</button>
+            </div>
+    </div>
+    </div>
+    </div>  
+    </div>
+    <div className='modal-dialog modal-dialog-centered'>
+    <Modal show={show} onHide={handleClose} >
+        <Modal.Header closeButton>
+          <Modal.Title>Prescription</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <LoginForm onSubmit={onLoginFormSubmit} /> */}
+          <Form >
+          <div className="form-outline mb-4">
+              <input type="textarea" className="form-control form-control-lg" 
+              placeholder="Disease"
+               value={disease}
+              onChange={(event) => setDisease(event.target.value) }/>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="textarea" className="form-control form-control-lg" 
+              placeholder='Prescription'
+                   value={prescription}
+                  onChange={(event) => setPrescription(event.target.value) }/>
+            </div>
+          </Form>
+          
+        </Modal.Body>
+        <p style={{ color: "green",'textAlign':'center' }}>{msg}</p>
+        <p style={{ color: "red" ,'textAlign':'center'}}>{errormsg}</p>
+        <Modal.Footer>
+          <Button variant="success" onClick={handleUpdate}>
+            Save
+          </Button>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+    
+    </section>
+      
       </>
     )
 }

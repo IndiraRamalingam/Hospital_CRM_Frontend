@@ -1,126 +1,73 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
-import { Table , Dropdown} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams,useNavigate } from 'react-router-dom';
 
 function DoctorDashboard() {
 
-    const[patient,setPatient]=useState([]);
-    const [alarm, setAlarm] = useState(false);
+    const params=useParams();
+    const navigate=useNavigate();
+    console.log(params.id)
+    const[doctorname,setDoctorname]=useState('')
 
     useEffect(()=>{
-        viewPatient()
-    },[alarm]);
+        getDoctorName()
+    },[]);
 
-    const viewPatient = async() =>{
+    const getDoctorName=async()=>{
         try{
-            const response = await instance.protectedInstance.get('/doctor/view_patients');
-            console.log(response.data.patients)
-            setPatient(response.data.patients) 
-              console.log("Patients fetched successfully")
+            const response = await instance.protectedInstance.get('/doctor');
+            const res=response.data.name;
+            setDoctorname(res)
+            console.log("Patient fetched successfully" + res)
         }
         catch(error)
         {
-            console.log("Error in fetching patients ", error)
+            console.log('Error in getting doctor name ',error)
         }
-    }
-    
-    // patient.map((p)=>{
-    //     console.log("PPPPP --- > "+p.name , p.disease,p.email)
-    // })
-    
-    const deletePatient = async(id) =>{
-        try{
-            let response=await instance.protectedInstance.delete(`/doctor/delete_patients/${id}`)
-            if(response.status==200)
-            {
-                setAlarm(true);
-                console.log("Deleted Patient successfully")
-            }
         }
-        catch(error)
-        {
-            console.log("Error in deleting patient ", error)
-        }
-    }
-
   return (
         <>
-        <div className='text-center'>
-        <h1>LIST OF PATIENTS</h1>
-        </div>      
-        <br/>
-            <Table striped >
-                <thead align='middle'>
-                  <tr >
-                    <th>#</th>
-                    <th >Name</th>
-                    <th>Email ID</th>
-                    <th>Contact</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead> 
-                {patient.map((p,i) =>{             
-                    var statuss,color,prescribe;
-                    if(!p.disease && !p.prescription)
-                    {
-                        statuss="Not Attended"
-                        color="danger"
-                        prescribe="Prescribe Medicine"
+        <section className="h-100" style={{background:"#dbe0e3"}}> 
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0">
+        
+        <div className="col-xl-5 d-xl-block">
+          <img src="../src/assets/DoctorDashboard.webp"
+            alt="Sample photo" className="img-fluid"
+            style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px','width':'25rem'}}/>
+        </div>
 
-                    }
-                    else{
-                        statuss="Attended"
-                        color="success"
-                        prescribe="Re-Prescribe Medicine"
-                    }
-                    return(
-                        // <li key={p._id}>
-                        //     <p>{p.name}</p>
-                        // </li>            
-                        <tbody key={p._id}  align='middle'>
-                        <tr>
-                            <td>{i+1}</td>
-                            <td>{p.name}</td>
-                            <td>{p.email}</td>
-                            <td>{p.phone}</td>
-                            <td>
-                                <span className={`badge bg-${color}`}>
-                                {statuss}
-                                </span>
-                            </td>
-                            <td>
-                            <Dropdown>
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                Action
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                <Dropdown.Item
-                                    as={Link}
-                                    to={`/editPatient/${p._id}`}
-                                >
-                                    {prescribe}
-                                </Dropdown.Item>
-                                <Dropdown.Item
-                                    onClick={() => {
-                                        deletePatient(p._id);
-                                    }}
-                                >
-                                    Cancel Appointment
-                                </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            </td>
-                        </tr>
-                        </tbody>
-                    
-                    );
+        <div className="col-xl-7">
+            <div className="card-body p-md-5 text-black">
+            <h3 className="mb-5 mt-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Doctor Dashboard</h3>
+            
+            <div className="row">
+                <div className="col-12 panel text-center">  
+                    <h5 className="mb-5 text-uppercase" style={{color:"#5ae55a",'fontWeight':'600','textAlign':'center'}}>Welcome {doctorname}</h5>
+                </div>
+            </div>
+                <div className="row">
+                <div className="col-12 panel text-center">  
+                  <button type="button" className=" mb-5 btn btn-outline-warning" 
+                  onClick={()=>{
+                    navigate(`/viewPatientList/${params.id}`)
+                  }}
+                  >Click to view Appointment List</button>
+                </div>
+            </div>                    
+         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
 
-                    
-                })}
-         </Table>
-   </>
+        </>
   )
 }
 

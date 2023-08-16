@@ -40,7 +40,16 @@ function createPatient() {
   const handleCreate =(event) =>
   {
     event.preventDefault();
-    bookAppointment({specialist,date,time}) 
+    if(specialist !='' && date!='' && time!='')
+    {
+      
+      setMsgg('')
+      bookAppointment({specialist,date,time}) 
+    } 
+    else{
+      setMsgg("Please fill all the fields to book appointment");
+    }
+  
   }
 
   const bookAppointment = async(details)=>{
@@ -82,7 +91,7 @@ function createPatient() {
               
             <div className="row">
                   <select className="form-select form-select-lg mb-3" onChange={(e)=>setSpecialist(e.target.value)}>
-                    <option selected>Specialist</option>
+                    <option selected>--Select Specialist--</option>
                         {
                         values.map((opts,i)=>
                         <option key={i}>{opts.specialist}</option>

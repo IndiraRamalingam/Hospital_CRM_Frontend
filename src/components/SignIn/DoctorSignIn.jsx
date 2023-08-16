@@ -27,8 +27,12 @@ function DoctorSignIn() {
           console.log("TOKEN __> "+response.data.token);
           if (response.status === 200) {
             try{
-             
-              navigate(`/doctorDashboard`)
+              const response = await instance.protectedInstance.get('/doctor');
+              console.log(response.data)
+              const res=response.data;
+              const params_id=res.doctor_ID;
+              console.log("Patient fetched successfully" + params_id)
+              navigate(`/doctorDashboard/${params_id}`)
           }
           catch(error)
       {
@@ -53,62 +57,15 @@ function DoctorSignIn() {
     }  
   }
 
-  const formStyles = {
-    background: "whitesmoke",
-    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-    width: "28rem",
-    padding: "2rem",
-    borderRadius: "1rem",
-    margin: "0rem 1.5rem",
-  };
-
     return (
-//       <>
-//         <div className="mx-auto col-10 col-md-8 col-lg-4 mt-5" style={formStyles}>
-//             <Form onSubmit={handleSignin}>
-//               <div>
-//                 <h4 style={{ textAlign: "center" }}>DOCOTR LOGIN</h4>
-//                 <br/>
-//               </div>
-//                 <Form.Group className="mb-3">
-//                     <Form.Control 
-//                     size="lg"
-//                     type="email" 
-//                     placeholder="Email ID"
-//                     value={email}
-//                     onChange={(event) => setEmail(event.target.value) }
-//                     />
-//                 </Form.Group>
-// 
-//                 <Form.Group className="mb-3">
-//                     <Form.Control 
-//                     size="lg"
-//                     type='password'
-//                     value={password}
-//                     placeholder='Password'
-//                     onChange={(event) => setPassword(event.target.value) }
-//                     />
-//                 </Form.Group>
-//                 
-//                 <p style={{ color: "red" }}>{msg}</p>
-// 
-//                 <div className="text-center">
-//                     <Button variant="primary" type="submit">
-//                        LogIn
-//                     </Button>
-//                 </div>
-//               </Form>           
-//         </div>
-//       </>
-
-        <>
+      <>
         <section className="h-100" style={{background:"#dbe0e3"}}>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
         <div className="card card-registration my-4">
         <div className="row g-0">
-        <div className="col-xl-6 d-none d-xl-block">
+        <div className="col-xl-6  d-xl-block">
           <img src="../src/assets/DoctorSignIn.avif"
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px'}}/>

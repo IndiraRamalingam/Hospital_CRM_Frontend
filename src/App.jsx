@@ -25,6 +25,7 @@ import ViewContacts from './components/Admin/ViewContacts'
 import CreatePatientByAdmin from './components/Admin/CreatePatientByAdmin'
 import PatientDashboard from './components/Patient/PatientDashboard'
 import BookHistory from './components/Patient/BookHistory'
+import ViewPatientList from './components/Doctor/ViewPatientList'
 
 
 function App() {
@@ -51,7 +52,8 @@ function App() {
           <Route path='/viewPatient/:id' element={<ViewPatient />} />
           <Route path='/patientDashboard/:id' element={<PatientDashboard/>}/>
           <Route path='/viewAllPatients' element={<ViewAllPatients />} />
-          <Route path='/doctorDashboard' element={<DoctorDashboard />} />
+          <Route path='/doctorDashboard/:id' element={<DoctorDashboard />} />
+          <Route path='/viewPatientList/:id' element={<ViewPatientList />}/>
           <Route path='/createDoctor'element={<CreateDoctor/>}/>
           <Route path='/editDoctor/:id' element={<EditDoctor/>}/>
           <Route path='/viewDoctor' element={<ViewDoctor/>}/>

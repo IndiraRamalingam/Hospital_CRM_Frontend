@@ -54,7 +54,7 @@ function BookHistory() {
                     {specialist.map((s,i)=>{
                         return(
                             <tr align='middle'>
-                                <td>{i+1}</td>                         
+                                <td key={i}>{i+1}</td>                         
                             </tr>
                         )
                     })}
@@ -85,7 +85,7 @@ function BookHistory() {
         <Table striped >
                 <thead align='middle'>
                   <tr >                
-                    <th >Date</th>
+                    <th >Appointment Date</th>
                   </tr>
                 </thead> 
                 <tbody>                   
@@ -104,7 +104,7 @@ function BookHistory() {
         <Table striped >
                 <thead align='middle'>
                   <tr >                
-                    <th >Time</th>
+                    <th > Appointment Time</th>
                   </tr>
                 </thead> 
                 <tbody>                   
