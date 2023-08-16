@@ -56,7 +56,7 @@ function ViewPatientList() {
         <div className="card-body p-md-5 text-black">
         <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Appointment List</h3>
     </div>
-        
+    <div class="table-responsive-sm text-nowrap"> 
     <Table striped >
                 <thead align='middle'>
                   <tr >
@@ -124,6 +124,7 @@ function ViewPatientList() {
                     
                 })}
          </Table>
+         </div>
          <div className="d-flex justify-content-end pt-3 pb-3">
         <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
             onClick={()=>{

@@ -56,6 +56,7 @@ function ViewAllPatients() {
                 <h1>LIST OF PATIENTS</h1>
                 </div>      
                 <br/>
+                <div class="table-responsive-sm text-nowrap">
                     <Table striped >
                         <thead align='middle'>
                           <tr >
@@ -126,6 +127,7 @@ function ViewAllPatients() {
                               );    
                             })}
                         </Table>
+                        </div>
 
             </div>
             <a className="backtotop" href="#page-top">

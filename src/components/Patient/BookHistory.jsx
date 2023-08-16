@@ -44,6 +44,7 @@ function BookHistory() {
     <div className='row'>
 
     <div className='col-3'>
+    <div class="table-responsive-sm text-nowrap">
         <Table striped >
                 <thead align='middle'>
                   <tr >
@@ -60,6 +61,7 @@ function BookHistory() {
                     })}
                 </tbody>
          </Table>
+         </div>
         </div>
 
         <div className='col-3'>

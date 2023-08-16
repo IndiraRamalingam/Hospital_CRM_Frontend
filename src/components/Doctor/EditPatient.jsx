@@ -88,6 +88,7 @@ function editPatient() {
     <div className='row'>
 
     <div className='col-4'>
+    <div class="table-responsive-sm text-nowrap">
         <Table striped >
                 <thead align='middle'>
                   <tr >
@@ -104,13 +105,15 @@ function editPatient() {
                     })}
                 </tbody>
          </Table>
+         </div>
         </div>
 
         <div className='col-4'>
+        <div class="table-responsive-sm text-nowrap">
         <Table striped >
                 <thead align='middle'>
                   <tr >
-                    <th >Disease/Complaints</th>
+                    <th >Disease</th>
                   </tr>
                 </thead> 
                 <tbody>                 
@@ -123,8 +126,10 @@ function editPatient() {
                     })}
                 </tbody>
          </Table>
+         </div>
         </div>
         <div className='col-4'>
+        <div class="table-responsive-sm text-nowrap">
         <Table striped >
                 <thead align='middle'>
                   <tr >
@@ -141,6 +146,7 @@ function editPatient() {
                     })}
                 </tbody>
          </Table>
+         </div>
         </div>
     </div>
     

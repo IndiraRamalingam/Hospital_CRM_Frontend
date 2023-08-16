@@ -27,7 +27,7 @@ function SideBar() {
         {/* <!-- Nav Item - Dashboard --> */}
         <li className="nav-item active">
           <Link className="nav-link" to="/adminDashboard">
-            <span>Dashboard</span>
+            <span className="dashboard">Dashboard</span>
           </Link>
         </li>
 
@@ -42,8 +42,8 @@ function SideBar() {
             aria-expanded={compoIsDrop}
             aria-controls="collapseTwo"
           >
-            <i className="fas fa-fw fa-cog"></i>
-            <span>Doctor</span>
+            <i className="fa-solid fa-user-doctor"> </i>
+            <span className="texts"> Doctor</span>
           </a>
           <div
             id="collapseTwo"
@@ -51,7 +51,7 @@ function SideBar() {
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
           >
-            <div className="bg-white py-2 collapse-inner rounded">
+            <div className="bg-white py-2 collapse-inner rounded innertext">
               {/* <h6 className="collapse-header">Custom Components:</h6> */}
               <Link className="collapse-item" to="/viewDoctor">
                 Doctors List
@@ -74,8 +74,8 @@ function SideBar() {
             aria-expanded={utiliIsDrop}
             aria-controls="collapseUtilities"
           >
-            <i className="fas fa-fw fa-wrench"></i>
-            <span>Patient</span>
+            <i className="fa-solid fa-bed"></i>
+            <span className="texts"> Patient</span>
           </a>
           <div
             id="collapseUtilities"
@@ -83,7 +83,7 @@ function SideBar() {
             aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar"
           >
-            <div className="bg-white py-2 collapse-inner rounded">
+            <div className="bg-white py-2 collapse-inner rounded innertext">
               {/* <h6 className="collapse-header">Custom Utilities:</h6> */}
               <Link className="collapse-item" to="/viewAllPatients">
                 Patients List
@@ -101,16 +101,16 @@ function SideBar() {
      {/* <!-- Nav Item - Feedbacks --> */}
      <li className="nav-item">
           <Link className="nav-link" to="/viewContact">
-            <i className="fas fa-fw fa-chart-area"></i>
-            <span>View Queries</span>
+          <i className="fa-solid fa-circle-question"></i>
+            <span className="texts"> View Queries</span>
           </Link>
         </li>
         
         {/* <!-- Nav Item - Charts --> */}
         <li className="nav-item">
           <Link className="nav-link" to="/Charts">
-            <i className="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span>
+          <i className="fa-solid fa-chart-area"></i>
+            <span className="texts"> Charts</span>
           </Link>
         </li>
 
