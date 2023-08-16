@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import home from "../../assets/Home.jpg"
 
 function Home() {
   return (
@@ -8,7 +9,7 @@ function Home() {
 <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img className="d-block w-100" src="./src/assets/Home.jpg" height="400" alt="First slide"/>
+      <img className="d-block w-100" src={home} height="400" alt="First slide"/>
     </div>   
   </div>
 </div>
