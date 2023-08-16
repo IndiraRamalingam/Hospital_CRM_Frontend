@@ -8,7 +8,7 @@ function Home() {
 <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img className="d-block w-100" src="../src/assets/Home.jpg" height="400" alt="First slide"/>
+      <img className="d-block w-100" src="./src/assets/Home.jpg" height="400" alt="First slide"/>
     </div>   
   </div>
 </div>
@@ -26,19 +26,19 @@ function Home() {
 							<div className="row">
 							<div className="col-4">
 							<div className="panel text-center" >
-								<figure className="d-flex justify-center" ><img src="../src/assets/PatientsIcon.png" alt="Patient Login" /></figure>								
+								<figure className="d-flex justify-center" ><img src="./src/assets/PatientsIcon.png" alt="Patient Login" /></figure>								
                 <Link to='/patientsignin'><h5>Patient Login</h5></Link>
 							</div>
 						</div>
 				      <div className="col-4">
 							<div className="panel text-center" >
-              <figure className="d-flex justify-center" ><img src="../src/assets/DoctorIcon.png" alt="Doctor Login"  /></figure>
+              <figure className="d-flex justify-center" ><img src="./src/assets/DoctorIcon.png" alt="Doctor Login"  /></figure>
                 <Link to='/doctorsignin'><h5>Doctor Login</h5></Link>
 							</div>
 						</div>
 				      <div className="col-4">
 							<div className="panel text-center" >
-              <figure className="d-flex justify-center" ><img src="../src/assets/AdminIcon.png" alt="Admin Login"  /></figure>								
+              <figure className="d-flex justify-center" ><img src="./src/assets/AdminIcon.png" alt="Admin Login"  /></figure>								
                 <Link to='/adminsignin'><h5>Admin Login</h5></Link>
 							</div>
 						</div>
