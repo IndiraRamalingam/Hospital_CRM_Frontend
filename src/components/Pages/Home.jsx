@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import home from "../../assets/Home.jpg"
+import patient from "../../assets/PatientsIcon.png"
+import doctor from "../../assets/DoctorIcon.png"
+import admin from "../../assets/AdminIcon.png"
 
 function Home() {
   return (
@@ -27,19 +30,19 @@ function Home() {
 							<div className="row">
 							<div className="col-4">
 							<div className="panel text-center" >
-								<figure className="d-flex justify-center" ><img src="./src/assets/PatientsIcon.png" alt="Patient Login" /></figure>								
+								<figure className="d-flex justify-center" ><img src={patient} alt="Patient Login" /></figure>								
                 <Link to='/patientsignin'><h5>Patient Login</h5></Link>
 							</div>
 						</div>
 				      <div className="col-4">
 							<div className="panel text-center" >
-              <figure className="d-flex justify-center" ><img src="./src/assets/DoctorIcon.png" alt="Doctor Login"  /></figure>
+              <figure className="d-flex justify-center" ><img src={doctor} alt="Doctor Login"  /></figure>
                 <Link to='/doctorsignin'><h5>Doctor Login</h5></Link>
 							</div>
 						</div>
 				      <div className="col-4">
 							<div className="panel text-center" >
-              <figure className="d-flex justify-center" ><img src="./src/assets/AdminIcon.png" alt="Admin Login"  /></figure>								
+              <figure className="d-flex justify-center" ><img src={admin} alt="Admin Login"  /></figure>								
                 <Link to='/adminsignin'><h5>Admin Login</h5></Link>
 							</div>
 						</div>

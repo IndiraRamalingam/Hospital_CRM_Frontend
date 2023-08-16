@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import '../../App.css'
+import logo from "../../assets/Logo.avif"
 
 function NavBar() {
   return (
@@ -13,7 +14,7 @@ function NavBar() {
       <Container>
         <Navbar.Brand href="/">
 
-              <img src='../src/assets/Logo.avif' width={150} height={80} />
+              <img src={logo} width={150} height={80} />
      
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
