@@ -57,6 +57,7 @@ function EditDoctor() {
         console.log('update successful!');
         if (response.status === 200) {
           setMsgg('')
+          alert('Data has been updated successfully')
           navigate('/viewDoctor')
          
         }

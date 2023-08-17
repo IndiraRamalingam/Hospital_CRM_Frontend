@@ -65,6 +65,7 @@ function EditPatientByAdmin() {
         console.log('update successful!');
         if (response.status === 200) {
           setMsgg('')
+          alert('Data has been updated successfully')
           navigate('/viewAllPatients')
           
         }

@@ -35,6 +35,7 @@ function Contact() {
       console.log('Created successful!');
       setMsg('Our team will get in touch with you soon!!')
       setMsgg('')
+      alert('Our team will get in touch with you soon!!')
       navigate('/')
     }
     catch(error)

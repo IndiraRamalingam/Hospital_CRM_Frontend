@@ -60,6 +60,7 @@ function createPatient() {
       console.log('Created successful!');
       setMsg('Your Appointment has been created successfully!!  ')
       setMsgg('')
+      alert('Your appointment has been created')
       navigate(`/patientDashboard/${params.id}`)
     }
     catch(error)

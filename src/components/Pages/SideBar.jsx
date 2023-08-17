@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function SideBar() {
   const [compoIsDrop, setCompoIsDrop] = useState(false);
   const [utiliIsDrop, setUtiliIsDrop] = useState(false);
-  const [pageIsDrop, setPageIsDrop] = useState(false);
 
   return (
       <>
