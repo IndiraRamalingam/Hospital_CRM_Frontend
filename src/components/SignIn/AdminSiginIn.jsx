@@ -54,14 +54,6 @@ function AdminSiginIn() {
     }  
   }
 
-  const formStyles = {
-    background: "whitesmoke",
-    boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-    width: "28rem",
-    padding: "2rem",
-    borderRadius: "1rem",
-    margin: "0rem 1.5rem",
-  };
 
     return (
 

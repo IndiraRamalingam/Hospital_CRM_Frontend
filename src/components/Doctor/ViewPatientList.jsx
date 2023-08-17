@@ -56,7 +56,7 @@ function ViewPatientList() {
         <div className="card-body p-md-5 text-black">
         <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Appointment List</h3>
     </div>
-    <div class="table-responsive-sm text-nowrap"> 
+    <div className="table-responsive-sm text-nowrap"> 
     <Table striped >
                 <thead align='middle'>
                   <tr >

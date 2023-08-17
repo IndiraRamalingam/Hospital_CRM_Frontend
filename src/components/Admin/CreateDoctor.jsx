@@ -44,7 +44,7 @@ function CreateDoctor() {
         const response = await instance.protectedInstance.post('/admin/addDoctor',details);
         console.log('Created successful!');
         setMsg('New Doctor Added Succesfully')
-        setMsgg('')
+        setMsgg(''),setName(''),setPassword(''),setConfirmpassword(''),setSpecialist('--Specialist In--'),setFee(''),setEmail('')
         setInfor("Back to Dashboard")
       }
       catch(error)
@@ -113,10 +113,19 @@ function CreateDoctor() {
             </div>
 
             <div className="form-outline mb-4">
-              <input type="text" className="form-control form-control-lg" 
+              {/* <input type="text" className="form-control form-control-lg" 
               placeholder='Specialist'
               value={specialist}
-              onChange={(event) => setSpecialist(event.target.value) }/>
+              onChange={(event) => setSpecialist(event.target.value) }/> */}
+              <select className="form-select form-select-lg mb-3" onChange={(e) =>setSpecialist(e.target.value)}>
+                    <option selected>--Specialist In--</option>
+                      <option value="General Physician">General Physician</option>
+                      <option value="Paediatrician">Paediatrician</option>
+                      <option value="Gynecologist">Gynecologist</option>
+                      <option value="Physiotherapist">Physiotherapist</option>
+                      <option value="Diabetologist">Diabetologist</option>
+                      <option value="Gastroenterologist">Gastroenterologist</option>
+                    </select>
             </div>
 
             <div className="form-outline mb-4">
@@ -129,7 +138,7 @@ function CreateDoctor() {
          
             
             <div>
-            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/viewDoctors">{infor}</Link></p>
+            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/adminDashboard">{infor}</Link></p>
             <p style={{ color: "red" }}>{msgg}</p>
             </div>
 

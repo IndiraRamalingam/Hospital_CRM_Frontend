@@ -53,7 +53,7 @@ const deleteDoctor = async(id) =>{
                 <div className="card-body p-md-5 text-black">
                 <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Doctors List</h3>
               </div>
-              <div class="table-responsive text-nowrap">
+              <div className="table-responsive text-nowrap">
               <Table striped bordered hover >
                         <thead align='middle'>
                           <tr >

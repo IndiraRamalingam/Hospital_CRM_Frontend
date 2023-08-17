@@ -16,6 +16,7 @@ function ViewAllPatients() {
   const viewPatient = async() =>{
       try{
           const response = await instance.protectedInstance.get('/admin/patients');
+          console.log("RES -->  "+response.data.countOfPatients)
           console.log(response.data.allpatient)
           setPatient(response.data.allpatient) 
             console.log("Patients fetched successfully")
@@ -56,7 +57,7 @@ function ViewAllPatients() {
             <div className="card-body p-md-5 text-black">
                 <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Patients List</h3>
               </div>     
-                <div class="table-responsive text-nowrap">
+                <div className="table-responsive text-nowrap">
                     <Table striped >
                         <thead align='middle'>
                           <tr >

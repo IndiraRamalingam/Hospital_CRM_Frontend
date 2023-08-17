@@ -54,7 +54,7 @@ function ViewContacts() {
                 <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>List Of Queries</h3>
               </div>     
                 <br/>
-                <div class="table-responsive text-nowrap">
+                <div className="table-responsive text-nowrap">
                     <Table striped >
                         <thead align='middle'>
                           <tr >
