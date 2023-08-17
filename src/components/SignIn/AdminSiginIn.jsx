@@ -72,7 +72,7 @@ function AdminSiginIn() {
       <div className="col">
       <div className="card card-registration my-4">
       <div className="row g-0">
-      <div className="col-xl-6 d-none d-xl-block">
+      <div className="col-xl-6 d-xl-block">
         <img src={admin}
           alt="Sample photo" className="img-fluid"
           style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'450px'}}/>

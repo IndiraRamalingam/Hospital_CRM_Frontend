@@ -3,8 +3,8 @@ import instance from '../services/instance';
 import { Link, useParams,useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import SideBar from '../Pages/SideBar';
+import doctor from "../../assets/DoctorRegister.jpg"
 
 function CreateDoctor() {
 
@@ -19,22 +19,19 @@ function CreateDoctor() {
   const[msgg,setMsgg]=useState('');
   const[infor,setInfor]=useState('');
   
-
-   const formStyles = {
-        background: "whitesmoke",
-        boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-        width: "45rem",
-        padding: "2rem",
-        borderRadius: "1rem",
-        margin: "0rem 1.5rem",
-      };
   
     const handleCreate =(event) =>
     {
       event.preventDefault();
       if(password == confirmpassword)
       {
-        createDoctor({name,password,email,specialist,fee}) 
+        if(name!=''&&password!=''&&email!=''&&specialist!=''&&fee!='')
+        {
+          createDoctor({name,password,email,specialist,fee}) 
+        }else{
+          setMsgg('Please fill all the fields')
+        }
+        
       }
       else{
         setMsgg("Password is not matching")
@@ -64,99 +61,97 @@ function CreateDoctor() {
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
-      
-            <div className="mx-auto col-10 col-md-8 col-lg-4 mt-4" style={formStyles}>
-            <Form onSubmit={handleCreate}>
-              <div>
-                <h4 style={{ textAlign: "center" }}>Add New Doctor</h4>
-                <br/>
-              </div>
 
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Name</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={name}
-                      onChange={(event) => setName(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Password</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={password}
-                      onChange={(event) => setPassword(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Confirm Password</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={confirmpassword}
-                      onChange={(event) => setConfirmpassword(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-               
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Specialist</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={specialist}
-                      onChange={(event) => setSpecialist(event.target.value) }
-                    />       
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Fee</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={fee}
-                      onChange={(event) => setFee(event.target.value) }
-                    />       
-                </InputGroup>
-                
-                <br/>
-                <p style={{ color: "green" }}>{msg}<Link to="/viewAllPatients">{infor}</Link></p>
-                <p style={{ color: "red" }}>{msgg}</p>
-                
-                <br/>
-
-                <div className="text-center">
-                 
-                  <Button variant="primary" type="submit">
-                       Add Doctor
-                    </Button>
-                 
-                  <Button variant="primary"
-                     onClick={() => {
-                      navigate('/adminDashboard')
-                          console.log("Cancelled")
-                      }}>
-                       Cancel
-                    </Button>
-                       
-                    </div>
-              </Form>           
+            <section className="h-100" style={{background:"#dbe0e3"}}>
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0">
+        <div className="col-xl-6 d-none d-xl-block">
+          <img src={doctor}
+            alt="Sample photo" className="img-fluid"
+            style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'610px'}}/>
         </div>
+        <div className="col-xl-6">
+        <Form onSubmit={handleCreate}>
+          <div className="card-body p-md-5 text-black">
+            <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Add New Doctor</h3>
+              
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              value={name}
+              placeholder='Doctor Name'
+              onChange={(event) => setName(event.target.value)}
+              />
+            </div>
 
+            <div className="form-outline mb-4">
+              <input type="email" className="form-control form-control-lg" 
+              placeholder="Email ID"
+              value={email}
+              onChange={(event) => setEmail(event.target.value) }/>
+            </div>
+
+            <div className="row">
+              <div className="col-md-5 mb-4">
+                <div className="form-outline">
+                  <input type="text" className="form-control form-control-lg" 
+                  placeholder='Password'
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value) }/>
+                </div>
+              </div>
+              <div className="col-md-7 mb-4">
+                <div className="form-outline">
+                  <input type="text" className="form-control form-control-lg" 
+                  placeholder='Confirm Password'
+                  value={confirmpassword}
+                  onChange={(event) => setConfirmpassword(event.target.value) }/>
+                </div>
+              </div>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              placeholder='Specialist'
+              value={specialist}
+              onChange={(event) => setSpecialist(event.target.value) }/>
+            </div>
+
+            <div className="form-outline mb-4">
+              <input type="text" className="form-control form-control-lg" 
+              placeholder='Fee'
+              value={fee}
+              onChange={(event) => setFee(event.target.value) }/>
+            </div>
+
+         
+            
+            <div>
+            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/viewDoctors">{infor}</Link></p>
+            <p style={{ color: "red" }}>{msgg}</p>
+            </div>
+
+            <div className="d-flex justify-content-end pt-3">
+              <button type="button" className="btn btn-light btn-lg"
+              onClick={() => {
+                navigate('/adminDashboard')
+                    console.log("Cancelled")
+                }}>
+              Cancel</button>
+              <button type="Submit" className="btn btn-primary btn-lg ms-2">Add Doctor</button>
+            </div>
+
+          </div>
+          </Form>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </section>
 
 
             </div>

@@ -20,12 +20,19 @@ function createPatient() {
   const[infor,setInfor]=useState('');
 
 
+ 
   const handleCreate =(event) =>
   {
     event.preventDefault();
     if(password == confirmpassword)
     {
-      createDoctor({name,password,gender,email,age,address,phone}) 
+      if((name!=''&& password!=''&&gender!=''&&email!=''&&age!=''&&address!=''&&phone!=''))
+      {
+      createPatient({name,password,gender,email,age,address,phone}) 
+    }
+    else{
+      setMsgg("Please fill all the details")
+    }
     }
     else{
       setMsgg("Password is not matching")
@@ -33,7 +40,7 @@ function createPatient() {
     
   }
 
-  const createDoctor = async(details)=>{
+  const createPatient = async(details)=>{
     try{
       const response = await instance.authInstance.post('/patient/signup',details);
       console.log('Created successful!');
@@ -51,8 +58,6 @@ function createPatient() {
   }
 
   return (
-
-
 // Patient Registration
 
     <>
@@ -62,7 +67,7 @@ function createPatient() {
         <div className="col">
         <div className="card card-registration my-4">
         <div className="row g-0">
-        <div className="col-xl-6 d-none d-xl-block">
+        <div className="col-xl-6 d-xl-block">
           <img src={patient}
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'750px'}}/>

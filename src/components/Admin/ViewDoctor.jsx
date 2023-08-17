@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
-import { Table , Dropdown} from 'react-bootstrap';
+import {  Dropdown} from 'react-bootstrap';
+import Table from 'react-bootstrap/Table';
 import { Link,useNavigate } from 'react-router-dom';
 import SideBar from '../Pages/SideBar'
 
@@ -49,19 +50,11 @@ const deleteDoctor = async(id) =>{
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
-
-            <section className="h-100" style={{background:"#dbe0e3"}}>
-                <div className="container py-5 h-100">
-                <div className="row d-flex justify-content-center align-items-center h-100">
-                <div className="col">
-                <div className="card my-4" >
-                <div className="row g-0"></div>
-                <div className="col-xl-12 ">
                 <div className="card-body p-md-5 text-black">
                 <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Doctors List</h3>
               </div>
-              <div class="table-responsive-sm text-nowrap">
-              <Table striped >
+              <div class="table-responsive text-nowrap">
+              <Table striped bordered hover >
                         <thead align='middle'>
                           <tr >
                             <th>#</th>
@@ -109,26 +102,19 @@ const deleteDoctor = async(id) =>{
                             })}
                         </Table>
                       </div>
-                <div className="d-flex justify-content-end pt-3 pb-3">
+                <div className="d-flex justify-content-end pt-3 pb-3 pr-3">
                 <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
                     onClick={()=>{
                     navigate('/adminDashboard')}}>
                     Close</button>
-                    </div>
-              </div>
-              </div>
-              </div>  
-              </div>
-              </div>
-              </section>
-           
+                </div>
               </div>
               <a className="backtotop" href="#page-top">
               <i className="fas fa-angle-up"></i>
             </a>        
           </div>
         </div>
-      </div>
+   </div>
 
     </>
   )

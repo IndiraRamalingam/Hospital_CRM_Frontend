@@ -15,6 +15,7 @@ function EditDoctor() {
   const[email,setEmail]=useState('');
   const[specialist,setSpecialist]=useState('');
   const[fee,setFee]=useState('');
+  const[msgg,setMsgg]=useState('');
 
   useEffect(() => {
     getDoctorDetails(params)
@@ -23,7 +24,6 @@ function EditDoctor() {
 
     const getDoctorDetails = async(params) =>{
       try{
-        console.log(`PPPARRA ${params.id}`)
           const response = await instance.protectedInstance.get(`/admin/doctors/${params.id}`);
           console.log(response)
           const res=response.data;
@@ -38,19 +38,17 @@ function EditDoctor() {
               console.log("Error in fetching doctor details ", error)
           }
       }
-      const formStyles = {
-        background: "whitesmoke",
-        boxShadow: "0 8px 32px 0 rgba( 31, 38, 135, 0.37)",
-        width: "45rem",
-        padding: "2rem",
-        borderRadius: "1rem",
-        margin: "0rem 1.5rem",
-      };
-  
     const handleUpdate =(event) =>
     {
       event.preventDefault();
-      updateDoctor({name,email,specialist,fee})  
+      if(name!=''&&email!=''&&specialist!=''&&fee!='')
+      {
+        updateDoctor({name,email,specialist,fee})  
+      }
+      else{
+        setMsgg("Please fill all the details")
+      }
+     
     }
   
     const updateDoctor = async(details)=>{
@@ -58,7 +56,9 @@ function EditDoctor() {
         const response = await instance.protectedInstance.put(`/admin/editDoctor/${params.id}`,details);
         console.log('update successful!');
         if (response.status === 200) {
+          setMsgg('')
           navigate('/viewDoctor')
+         
         }
       }
       catch(error)
@@ -76,73 +76,106 @@ function EditDoctor() {
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
-          
-            <div className="mx-auto col-10 col-md-8 col-lg-4 mt-4" style={formStyles}>
-            <Form onSubmit={handleUpdate}>
-              <div>
-                <h4 style={{ textAlign: "center" }}>Update Details Below</h4>
-                <br/>
+
+            <section className="h-100" style={{background:"#dbe0e3"}}>
+        <div className="container py-5 h-100">
+        <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col">
+        <div className="card card-registration my-4">
+        <div className="row g-0">
+        {/* <div className="col-xl-6 d-none d-xl-block">
+          <img src={patient}
+            alt="Sample photo" className="img-fluid"
+            style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'750px'}}/>
+        </div> */}
+        <div className="col-xl-12">
+        <Form onSubmit={handleUpdate}>
+          <div className="card-body p-md-5 text-black">
+            <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Edit Doctor Details</h3>
+              
+            <div className="form-outline mb-4">
+              <div className='row'>
+                <div className='col-sm-3 fs-4 fw-bold labelnew'>
+                Doctor Name
+                </div>
+                <div className='col-sm-9'>
+                <input type="text" className="form-control form-control-lg" 
+              value={name}
+              placeholder='Doctor Name'
+              onChange={(event) => setName(event.target.value)}
+              />
+                </div>
+              </div>              
+            </div>
+
+
+            <div className="form-outline mb-4">              
+            <div className='row'>
+              <div className='col-sm-3 fs-4 fw-bold labelnew'>
+                EMail ID
               </div>
+              <div className='col-sm-9'>
+                <input type="email" className="form-control form-control-lg" 
+                placeholder="Email ID"
+                value={email}
+                onChange={(event) => setEmail(event.target.value) }/>
+              </div>
+            </div>
+           
+            </div>
 
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Name</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={name}
-                      onChange={(event) => setName(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Email</InputGroup.Text>
-                    <Form.Control
-                      aria-label="Large"
-                      aria-describedby="inputGroup-sizing-sm"
-                      value={email}
-                      onChange={(event) => setEmail(event.target.value) }
-                    />
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Specialist</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={specialist}
-                      onChange={(event) => setSpecialist(event.target.value) }
-                    />       
-                </InputGroup>
-                <br/>
-                <InputGroup size="lg">
-                  <InputGroup.Text id="inputGroup-sizing-lg">Fee</InputGroup.Text>             
-                    <Form.Control 
-                      aria-label="Large"
-                      as="textarea"                     
-                      value={fee}
-                      onChange={(event) => setFee(event.target.value) }
-                    />       
-                </InputGroup>
-                
-                <br/>
-                <div className="text-center">
-                 
-                  <Button variant="primary" type="submit">
-                       Update
-                    </Button>
-                 
-                  <Button variant="primary"
-                     onClick={() => {
-                      navigate('/viewDoctor')
-                          console.log("Cancelled")
-                      }}>
-                       Cancel
-                    </Button>
-                       
-                    </div>
-              </Form>           
-        </div>
+            <div className="form-outline mb-4">
+            <div className='row'>
+              <div className='col-sm-3 fs-4 fw-bold labelnew'>
+              Specialist
+              </div>
+              <div className='col-sm-9'>
+                <input type="text" className="form-control form-control-lg" 
+                placeholder='Specialist'
+                value={specialist}
+                onChange={(event) => setSpecialist(event.target.value) }/>
+              </div>
+            </div>
 
+            </div>
+
+            <div className="form-outline mb-4">
+            <div className='row'>
+              <div className='col-sm-3 fs-4 fw-bold labelnew'>
+                Fee
+              </div>
+              <div className='col-sm-9'>
+                <input type="text" className="form-control form-control-lg" 
+                placeholder='Fee'
+                value={fee}
+                onChange={(event) => setFee(event.target.value) }/>
+              </div>
+            </div>
+            </div>
+            
+            <div>
+            <p style={{ color: "red" }}>{msgg}</p>
+            </div>
+
+            <div className="d-flex justify-content-end pt-3">
+              <button type="button" className="btn btn-light btn-lg"
+              onClick={() => {
+                navigate('/viewDoctor')
+                    console.log("Cancelled")
+                }}>
+              Cancel</button>
+              <button type="Submit" className="btn btn-warning btn-lg ms-2">Update</button>
+            </div>
+
+              </div>
+              </Form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+          </section>
 
             </div>
             <a className="backtotop" href="#page-top">

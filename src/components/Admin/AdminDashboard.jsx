@@ -21,6 +21,7 @@ function AdminDashboard() {
         <div className="col">
         <div className="card card-registration my-4">
         <div className="row g-0">
+          
         <div className="col-xl-12">
             <div className="card-body p-md-5 text-black">
             <h2 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Admin Dashboard</h2>

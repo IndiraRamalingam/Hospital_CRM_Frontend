@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Table , Dropdown} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import SideBar from '../Pages/SideBar'
 
 function ViewAllPatients() {
+  const navigate=useNavigate();
   const[patient,setPatient]=useState([]);
   const [alarm, setAlarm] = useState(false);
 
@@ -52,11 +53,10 @@ function ViewAllPatients() {
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
 
-              <div className='text-center'>
-                <h1>LIST OF PATIENTS</h1>
-                </div>      
-                <br/>
-                <div class="table-responsive-sm text-nowrap">
+            <div className="card-body p-md-5 text-black">
+                <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Patients List</h3>
+              </div>     
+                <div class="table-responsive text-nowrap">
                     <Table striped >
                         <thead align='middle'>
                           <tr >
@@ -67,7 +67,6 @@ function ViewAllPatients() {
                             <th>Email ID</th>
                             <th>Contact</th>
                             <th>Address</th>
-                            <th>Specialist</th>
                             <th>Status</th>
                             <th>Action</th>
                           </tr>
@@ -75,7 +74,7 @@ function ViewAllPatients() {
                         {patient.map((p,i) =>{ 
                     
                             var statuss,color,prescribe;
-                            if(!p.disease && !p.prescription)
+                            if(p.disease.length==0 && p.prescription.length==0)
                             {
                                 statuss="Yet to consult"
                                 color="danger"
@@ -94,7 +93,6 @@ function ViewAllPatients() {
                                     <td>{p.email}</td>
                                     <td>{p.phone}</td>
                                     <td>{p.address}</td>
-                                    <td>{p.specialist}</td>
                                     <td>
                                         <span className={`badge bg-${color}`}>
                                         {statuss}
@@ -128,6 +126,12 @@ function ViewAllPatients() {
                             })}
                         </Table>
                         </div>
+                        <div className="d-flex justify-content-end pt-3 pb-3 pr-3">
+                <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
+                    onClick={()=>{
+                    navigate('/adminDashboard')}}>
+                    Close</button>
+                </div>
 
             </div>
             <a className="backtotop" href="#page-top">

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import instance from '../services/instance';
 import { Table , Button} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import SideBar from '../Pages/SideBar'
 
 function ViewContacts() {
     const[contact,setContact]=useState([]);
     const [alarm, setAlarm] = useState(false);
-    const[status,setStatus]=useState('Open')
-    const[color,setColor]=useState('danger')
+    const navigate=useNavigate();
   
     useEffect(()=>{
       viewContact()
@@ -50,10 +49,12 @@ function ViewContacts() {
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
-            <div className='text-center'>
-                <h1>LIST OF QUERIES</h1>
-                </div>      
+            
+            <div className="card-body p-md-5 text-black">
+                <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>List Of Queries</h3>
+              </div>     
                 <br/>
+                <div class="table-responsive text-nowrap">
                     <Table striped >
                         <thead align='middle'>
                           <tr >
@@ -87,6 +88,13 @@ function ViewContacts() {
                               );    
                             })}
                         </Table>
+                        </div>
+                        <div className="d-flex justify-content-end pt-3 pb-3 pr-3">
+                    <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
+                    onClick={()=>{
+                    navigate('/adminDashboard')}}>
+                    Close</button>
+                </div>
             </div>
             <a className="backtotop" href="#page-top">
               <i className="fas fa-angle-up"></i>
