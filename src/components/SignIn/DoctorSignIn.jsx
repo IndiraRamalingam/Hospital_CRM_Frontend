@@ -23,22 +23,18 @@ function DoctorSignIn() {
       try
       {  
           const response = await instance.authInstance.post('/doctor/signin',{email,password});
-          console.log('login successful!');
           sessionStorage.setItem("token", response.data.token)
-          console.log("TOKEN __> "+response.data.token);
           if (response.status === 200) {
             try{
               const response = await instance.protectedInstance.get('/doctor');
-              console.log(response.data)
               const res=response.data;
               const params_id=res.doctor_ID;
-              console.log("Patient fetched successfully" + params_id)
               navigate(`/doctorDashboard/${params_id}`)
           }
           catch(error)
-      {
+          {
           console.log("Error in fetching patient  ", error)
-      }        
+          }        
           }   
       }
       catch(error)

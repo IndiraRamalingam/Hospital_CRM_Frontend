@@ -19,8 +19,6 @@ function createPatient() {
   const[msgg,setMsgg]=useState('');
   const[infor,setInfor]=useState('');
 
-
- 
   const handleCreate =(event) =>
   {
     event.preventDefault();
@@ -36,14 +34,12 @@ function createPatient() {
     }
     else{
       setMsgg("Password is not matching")
-    }
-    
+    }    
   }
 
   const createPatient = async(details)=>{
     try{
       const response = await instance.authInstance.post('/patient/signup',details);
-      console.log('Created successful!');
       setMsg('Your Registration has been done successfully!!  ')
       setMsgg(''), setName(''), setAge(''),setEmail(''),setAddress(''),setConfirmpassword(''),setPassword(''),setGender(''),setPhone('')
       setInfor(" Click here to LogIn")
@@ -59,7 +55,6 @@ function createPatient() {
 
   return (
 // Patient Registration
-
     <>
       <section className="h-100 gradBG" >
         <div className="container py-5 h-100">
@@ -161,7 +156,6 @@ function createPatient() {
               <button type="button" className="btn btn-light btn-lg"
               onClick={() => {
                 navigate('/patientsignin')
-                    console.log("Cancelled")
                 }}>
               Cancel</button>
               <button type="Submit" className="btn btn-warning btn-lg ms-2">Register</button>

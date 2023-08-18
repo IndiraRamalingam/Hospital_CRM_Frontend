@@ -23,7 +23,6 @@ function viewPatient() {
     try{
 
         const response = await instance.protectedInstance.get(`/patient/patientDetails/${params.id}`);
-        console.log(response)
         const res=response.data;
         setName(res.patient.name)
         setAge(res.patient.age)
@@ -32,24 +31,23 @@ function viewPatient() {
         setPhone(res.patient.phone)
         setDate(res.patient.date)
         setTime(res.patient.time)
-        console.log("Patient details fetched successfully")
     }
     catch(error)
-{
+  {
     console.log("Error in fetching patient details ", error)
-}
+  }
 }
 
   return (
     <>
        <section className="h-100 gradBG" >
        <div className=" d-flex justify-content-end align-items-center ">
-              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
-              {
-                localStorage.clear();
-                window.location.href = '/';
-              }}>LogOut</button>
-            </div>
+          <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+          {
+            localStorage.clear();
+            window.location.href = '/';
+          }}>LogOut</button>
+        </div>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">

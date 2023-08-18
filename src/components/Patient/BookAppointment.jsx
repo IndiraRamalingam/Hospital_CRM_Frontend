@@ -5,12 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import patient from "../../assets/patientRegister.webp"
 
-
 function createPatient() {
 
   const navigate=useNavigate();
   const params=useParams();
-  console.log(params)
   const[values,setValues]=useState([])
   const[specialist,setSpecialist]=useState('')
   const[doctorname,setDoctorname]=useState('')
@@ -28,31 +26,23 @@ function createPatient() {
   const getDoctorDetails = async() =>{
     try{
         const response = await instance.protectedInstance.get('/admin/getAllDoctorName');
-        console.log(response.data.alldoctors)
         setValues(response.data.alldoctors)
-        console.log("Doctor details fetched successfully")
         }
         catch(error)
       {
             console.log("Error in fetching doctor details ", error)
-    }
-    }
-   
+      }
+      }
 
   const handleCreate =(event) =>
   {
     event.preventDefault();
      const val=use.replace('Dr. ','');
-    //  setDoctorname(val)
-    //  console.log("Special  "+val)
     const doctorname=val.slice('-',val.search(' -'))
-      console.log("FFFF --> "+doctorname)
-    
     if(doctorname !='' && date!='' && time!='')
     {    
       setMsgg('')
       bookAppointment({doctorname,date,time}) 
-     
     } 
     else{
       setMsgg("Please fill all the fields to book appointment first");
@@ -62,9 +52,7 @@ function createPatient() {
 
   const bookAppointment = async(details)=>{
     try{
-      console.log("YSE "+details)
       const response = await instance.protectedInstance.put(`/patient/book_appointment/${params.id}`,details);
-      console.log('Created successful!');
       setMsg('Your Appointment has been created successfully!!  ')
       setMsgg('')
       alert('Your appointment has been created')
@@ -72,16 +60,13 @@ function createPatient() {
     }
     catch(error)
     {
-     
       console.log("Error in creating doctor "+error)
       setMsg('')
       setMsgg("Please fill all the fields to book appointment");
     }
-
   }
 
   return (
-
     <>
       <section className="h-100 gradBG">
       <div className=" d-flex justify-content-end align-items-center ">
@@ -146,7 +131,6 @@ function createPatient() {
               <button type="button" className="btn btn-light btn-lg"
               onClick={() => {
                 navigate(`/patientDashboard/${params.id}`)
-                    console.log("Cancelled")
                 }}>
               Cancel</button>
               <button type="Submit" className="btn btn-warning btn-lg ms-2">Book Appointment</button>

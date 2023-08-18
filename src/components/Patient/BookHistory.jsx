@@ -18,11 +18,9 @@ function BookHistory() {
     const bookHistory = async() =>{
         try{
             const response = await instance.protectedInstance.get(`/patient/patientDetails/${params.id}`);
-            console.log(response.data.patient)
             setSpecialist(response.data.patient.doctorname) 
             setDate(response.data.patient.date) 
             setTime(response.data.patient.time) 
-            console.log("Patients fetched successfully")
         }
         catch(error)
         {
@@ -81,7 +79,6 @@ function BookHistory() {
                 <tbody>                 
                     {specialist.map((s,i)=>{
                         return(
-                            
                             <tr align='middle'>                      
                                 <td key={s.id}>{s}</td>
                             </tr>

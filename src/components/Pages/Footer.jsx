@@ -13,9 +13,7 @@ function Footer() {
       "height" : "2.5rem",
       "display":"flex",
      " alignItems": "center",
-      "justifyContent": "center",
-    
-      
+      "justifyContent": "center",   
   }
 
   return (

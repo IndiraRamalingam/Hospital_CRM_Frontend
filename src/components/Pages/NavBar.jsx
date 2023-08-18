@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button';
+
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,9 +13,7 @@ function NavBar() {
       <Navbar collapseOnSelect expand="lg" className='navigation'>
       <Container>
         <Navbar.Brand href="/">
-
               <img src={logo} width={150} height={80} />
-     
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

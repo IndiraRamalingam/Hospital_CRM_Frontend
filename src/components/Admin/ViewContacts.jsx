@@ -16,9 +16,7 @@ function ViewContacts() {
   const viewContact = async() =>{
       try{
           const response = await instance.protectedInstance.get('/admin/getAllContacts');
-          console.log(response.data.allcontact)
           setContact(response.data.allcontact) 
-            console.log("Contacts fetched successfully")
       }
       catch(error)
       {
@@ -26,14 +24,12 @@ function ViewContacts() {
       }
   }
  
-  
   const deleteContact = async(id) =>{
       try{
           let response=await instance.protectedInstance.delete(`/admin/deleteContact/${id}`)
           if(response.status==200)
           {
               setAlarm(true);
-              console.log("Deleted Contact successfully")
           }
       }
       catch(error)

@@ -18,9 +18,7 @@ function ViewDoctor() {
 const viewDoctor = async() =>{
     try{
         const response = await instance.protectedInstance.get('/admin/doctors');
-        console.log(response.data.alldoctors)
         setDoctor(response.data.alldoctors) 
-          console.log("Doctors fetched successfully")
     }
     catch(error)
     {
@@ -34,7 +32,6 @@ const deleteDoctor = async(id) =>{
         if(response.status==200)
         {
             setAlarm(true);
-            console.log("Deleted Doctor successfully")
         }
     }
     catch(error)

@@ -16,10 +16,7 @@ function ViewAllPatients() {
   const viewPatient = async() =>{
       try{
           const response = await instance.protectedInstance.get('/admin/patients');
-          console.log("RES -->  "+response.data.countOfPatients)
-          console.log(response.data.allpatient)
           setPatient(response.data.allpatient) 
-            console.log("Patients fetched successfully")
       }
       catch(error)
       {
@@ -27,19 +24,12 @@ function ViewAllPatients() {
       }
   }
   
-  // patient.map((p)=>{
-  //     console.log("PPPPP --- > "+p.name , p.disease,p.email)
-  // })
-  
   const deletePatient = async(id) =>{
       try{
           let response=await instance.protectedInstance.delete(`/admin/deletePatient/${id}`)
           if(response.status==200)
           {
             window.location.reload(false); 
-             // setAlarm(true);
-              
-              console.log("Deleted Patient successfully")
           }
       }
       catch(error)
@@ -76,7 +66,7 @@ function ViewAllPatients() {
                         </thead> 
                         {patient.map((p,i) =>{ 
                     
-                            var statuss,color,prescribe;
+                            var statuss,color;
                             if(p.disease.length==0 && p.prescription.length==0)
                             {
                                 statuss="New"

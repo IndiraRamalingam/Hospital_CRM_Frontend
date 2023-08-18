@@ -3,7 +3,7 @@ import axios from "axios";
 const baseURL='https://hospital-crm-backend.onrender.com/api'
 //const baseURL='http://localhost:3001/api'
 
-console.log(baseURL)
+//console.log(baseURL)
 
 const authInstance= axios.create({
     baseURL : baseURL,

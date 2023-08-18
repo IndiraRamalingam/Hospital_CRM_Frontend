@@ -11,14 +11,6 @@ function SideBar() {
         className="navbar-nav sidebar sidebar-dark accordion navigation"
         id="accordionSidebar"
       >
-        {/* <!-- Sidebar - Brand --> */}
-        {/* <Link
-          className="sidebar-brand d-flex align-items-center justify-content-center"
-          to="/adminDashboard">
-          <div className="sidebar-brand-text">
-            Admin
-          </div>
-        </Link> */}
 
         {/* <!-- Divider --> */}
         <hr className="sidebar-divider my-0" />

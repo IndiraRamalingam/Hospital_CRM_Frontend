@@ -11,12 +11,12 @@ function PatientDashboard() {
     <>
      <section className="h-100 gradBG"> 
      <div className=" d-flex justify-content-end align-items-center ">
-              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
-              {
-                localStorage.clear();
-                window.location.href = '/';
-              }}>LogOut</button>
-            </div>
+        <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+        {
+          localStorage.clear();
+          window.location.href = '/';
+        }}>LogOut</button>
+      </div>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -64,8 +64,7 @@ function PatientDashboard() {
   </div>
   </div>
   </section>
-  
-    </>
+  </>
   )
 }
 

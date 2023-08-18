@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import instance from '../services/instance'
-import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import admin from "../../assets/AdminResgister.jpg"
 
@@ -23,19 +22,16 @@ function AdminSiginIn() {
       try
       {  
           const response = await instance.authInstance.post('/admin/signin',{email,password});
-          console.log('login successful!');
           sessionStorage.setItem("token", response.data.token)
-          console.log("TOKEN __> "+response.data.token);
           if (response.status === 200) {
             try{
-             
               navigate('/adminDashboard')
           }
           catch(error)
-      {
+          {
           console.log("Error in fetching patient  ", error)
-      }        
-          }   
+          }        
+        }   
       }
       catch(error)
       {   
@@ -53,7 +49,6 @@ function AdminSiginIn() {
         }
     }  
   }
-
 
     return (
 
@@ -74,7 +69,6 @@ function AdminSiginIn() {
         <div className="card-body p-md-5 text-black">
           <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Sign In</h3>
             
-
           <div className="form-outline mb-4">
             <input type="email" className="form-control form-control-lg" 
             placeholder="Email ID"

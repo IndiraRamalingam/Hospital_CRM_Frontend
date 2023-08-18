@@ -9,8 +9,6 @@ function editPatient() {
   const params=useParams();
 
   const navigate=useNavigate();
-  const[name,setName]=useState('');
-  const[age,setAge]=useState('');
   const[disease,setDisease]=useState('');
   const[prescription,setPrescription]=useState('');
   const[newdisease,setNewDisease]=useState([]);
@@ -23,20 +21,16 @@ function editPatient() {
 
  useEffect(() => {
   getPatientDetails(params)
-  console.log(params.id)
   }, []);
 
   const getPatientDetails = async(params) =>{
     try{
-      console.log(`PPPARRA ${params.id}`)
         const response = await instance.protectedInstance.get(`/doctor/get_patients/${params.id}`);
-        console.log(response.data.patient)
         const res=response.data;
         setName(res.patient.name)
         setAge(res.patient.age)
         setNewDisease(response.data.patient.disease)
         setNewPrescription(response.data.patient.prescription)
-        console.log("Patient details fetched successfully")
         }
         catch(error)
         {
@@ -59,7 +53,6 @@ function editPatient() {
   const prescribePatient = async(details)=>{
     try{
       const response = await instance.protectedInstance.put(`/doctor/prescribe_patients/${params.id}`,details);
-      console.log('update successful!');
       if (response.status === 200) {
         setMsg("Prescription Added")    
         setErrorMsg('') , setDisease(''),setPrescription('')
@@ -73,7 +66,6 @@ function editPatient() {
 
   }
 
-
     return (
       <>
         <section className="h-100 gradBG">
@@ -85,11 +77,11 @@ function editPatient() {
         <div className="row g-0"></div>
         <div className="card-body p-md-5 text-black">
         <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Prescription History</h3>
-    </div>
-    <div className='row'>
+        </div>
+        <div className='row'>
 
-    <div className='col-4'>
-    <div class="table-responsive-sm text-nowrap">
+        <div className='col-4'>
+        <div class="table-responsive-sm text-nowrap">
         <Table striped >
                 <thead align='middle'>
                   <tr >
@@ -170,7 +162,6 @@ function editPatient() {
           <Modal.Title>Prescription</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* <LoginForm onSubmit={onLoginFormSubmit} /> */}
           <Form >
           <div className="form-outline mb-4">
               <input type="textarea" className="form-control form-control-lg" 

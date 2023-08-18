@@ -17,9 +17,7 @@ function ViewPatientList() {
     const viewPatient = async() =>{
         try{
             const response = await instance.protectedInstance.get('/doctor/view_patients');
-            console.log(response.data.patients)
             setPatient(response.data.patients) 
-            console.log("Patients fetched successfully")
         }
         catch(error)
         {
@@ -35,7 +33,6 @@ function ViewPatientList() {
             {
                 setAlarm(true);
                 window.location.reload(false); 
-                console.log("Deleted Patient successfully")
             }
         }
         catch(error)
@@ -56,9 +53,9 @@ function ViewPatientList() {
         <div className="col-xl-12 ">
         <div className="card-body p-md-5 text-black">
         <h3 className="mb-1 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Appointment List</h3>
-    </div>
-    <div className="table-responsive-sm text-nowrap"> 
-    <Table striped >
+        </div>
+        <div className="table-responsive-sm text-nowrap"> 
+        <Table striped >
                 <thead align='middle'>
                   <tr >
                     <th>#</th>
@@ -71,19 +68,14 @@ function ViewPatientList() {
                 </thead> 
                 {patient.map((p,i) =>{    
                     var p_date=p.date.length;
-                    var p_disease=p.disease.length;
-                    console.log(p_date + "   "+p_disease) 
-
-                    
+                    var p_disease=p.disease.length;    
                     if(p_date!=p_disease){
-
                         var statuss,color,prescribe;
                         if(p.disease.length==0 && p.prescription.length==0)
                         {
                             statuss="New"
                             color="danger"
                             prescribe="Prescribe Medicine"
-    
                         }
                         else{
                             statuss="Regular"
@@ -130,7 +122,6 @@ function ViewPatientList() {
                         );
                     }   
                     else{
-
                         var statuss,color,prescribe;
                         if(p.disease.length==0 && p.prescription.length==0)
                         {
@@ -157,17 +148,12 @@ function ViewPatientList() {
                                     </span>
                                 </td>
                                 <td>
-                                <Dropdown>
+                                    <button className='btn btn-info'>Consulted</button>
+                                {/* <Dropdown>
                                     <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                     Action
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
-                                    {/* <Dropdown.Item
-                                        as={Link}
-                                        to={`/editPatient/${p._id}`}
-                                    >
-                                        {prescribe}
-                                    </Dropdown.Item> */}
                                     <Dropdown.Item
                                         onClick={() => {
                                             deletePatient(p._id);
@@ -176,25 +162,21 @@ function ViewPatientList() {
                                         Delete Patient
                                     </Dropdown.Item>
                                     </Dropdown.Menu>
-                                </Dropdown>
+                                </Dropdown> */}
                                 </td>
                             </tr>
-                            </tbody>
-                        
-                        );
-                    }
-                    
-
-                    
-                })}
-         </Table>
-         </div>
-         <div className="d-flex justify-content-end pt-3 pb-3">
-        <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
-            onClick={()=>{
-            navigate(`/doctorDashboard/${params.id}`)}}>
-            Close</button>
+                            </tbody>         
+                            );
+                        }                  
+                    })}
+                </Table>
             </div>
+        <div className="d-flex justify-content-end pt-3 pb-3">
+        <button  type="button" className="btn btn-danger btn-lg" style={{fontWeight:'bolder', 'textAlign':'center'}}
+        onClick={()=>{
+        navigate(`/doctorDashboard/${params.id}`)}}>
+        Close</button>
+    </div>
     </div>
     </div>
     </div>  

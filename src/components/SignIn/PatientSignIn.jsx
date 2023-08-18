@@ -23,24 +23,19 @@ function PatientSignIn() {
       try
       {  
           const response = await instance.authInstance.post('/patient/signin',{email,password});
-          console.log('login successful!');
           sessionStorage.setItem("token", response.data.token)
-          console.log("TOKEN __> "+response.data.token);
           if (response.status === 200) {
             try{
-
               const response = await instance.protectedInstance.get('/patient');
-              console.log(response.data)
               const res=response.data;
               const params_id=res.patient_ID;
-              console.log("Patient fetched successfully" + params_id)
               navigate(`/patientDashboard/${params_id}`)
           }
           catch(error)
-      {
+        {
           console.log("Error in fetching patient  ", error)
-      }        
-          }   
+        }        
+        }   
       }
       catch(error)
       {   
@@ -59,9 +54,7 @@ function PatientSignIn() {
     }  
   }
 
-
     return (
-
     <>
       <section className="h-100 gradBG">
         <div className="container py-5 h-100">
@@ -79,7 +72,6 @@ function PatientSignIn() {
           <div className="card-body p-md-5 text-black">
             <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Sign In</h3>
               
-
             <div className="form-outline mb-4">
               <input type="email" className="form-control form-control-lg" 
               placeholder="Email ID"
