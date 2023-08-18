@@ -1,8 +1,21 @@
-# React + Vite
+# Hospital Management CRM
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Netlify Deployed URL --> https://aquamarine-cobbler-943101.netlify.app/
+Render Deployed URL --> https://hospital-crm-backend.onrender.com
+Backend Source Code in GitHub --> https://github.com/IndiraRamalingam/Hospital_CRM_Backend
 
-Currently, two official plugins are available:
+Sample Credentials to try out this application:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Admin:
+Email --> admin@gmail.com
+Password --> 123
+
+Doctor:
+Email --> doctor@gmail.com
+Password --> 123
+
+Patient:
+Email --> patient@gmail.com
+Password --> 123
+
+*** Password was set as '123' for all mail Id of patients and doctor inside the app. Can able to see the Email Id's of Patient and Doctor under list by signing in as admin ***
