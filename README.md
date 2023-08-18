@@ -9,14 +9,17 @@ Backend Source Code in GitHub --> https://github.com/IndiraRamalingam/Hospital_C
 Sample Credentials to try out this application:
 
 Admin:
+
 Email --> admin@gmail.com
 Password --> 123
 
 Doctor:
+
 Email --> doctor@gmail.com
 Password --> 123
 
 Patient:
+
 Email --> patient@gmail.com
 Password --> 123
 
