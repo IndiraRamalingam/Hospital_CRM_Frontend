@@ -6,7 +6,7 @@ function DoctorDashboard() {
 
     const params=useParams();
     const navigate=useNavigate();
-    console.log(params.id)
+    console.log("ID--->  "+params.id)
     const[doctorname,setDoctorname]=useState('')
 
     useEffect(()=>{
@@ -18,7 +18,7 @@ function DoctorDashboard() {
             const response = await instance.protectedInstance.get('/doctor');
             const res=response.data.name;
             setDoctorname(res)
-            console.log("Patient fetched successfully" + res)
+            console.log("Patient fetched successfully  " + res)
         }
         catch(error)
         {
@@ -27,7 +27,14 @@ function DoctorDashboard() {
         }
   return (
         <>
-        <section className="h-100" style={{background:"#dbe0e3"}}> 
+        <section className="h-100 gradBG"> 
+        <div className=" d-flex justify-content-end align-items-center ">
+              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+              {
+                localStorage.clear();
+                window.location.href = '/';
+              }}>LogOut</button>
+            </div>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -46,7 +53,7 @@ function DoctorDashboard() {
             
             <div className="row">
                 <div className="col-12 panel text-center">  
-                    <h5 className="mb-5 text-uppercase" style={{color:"#5ae55a",'fontWeight':'600','textAlign':'center'}}>Welcome {doctorname}</h5>
+                    <h5 className="mb-5 text-uppercase" style={{color:"#5ae55a",'fontWeight':'600','textAlign':'center'}}>Welcome Dr. {doctorname}</h5>
                 </div>
             </div>
                 <div className="row">

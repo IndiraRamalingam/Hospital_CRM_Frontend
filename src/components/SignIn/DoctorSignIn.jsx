@@ -60,7 +60,7 @@ function DoctorSignIn() {
 
     return (
       <>
-        <section className="h-100" style={{background:"#dbe0e3"}}>
+        <section className="h-100 gradBG" >
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">

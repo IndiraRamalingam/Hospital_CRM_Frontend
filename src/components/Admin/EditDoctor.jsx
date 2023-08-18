@@ -78,7 +78,7 @@ function EditDoctor() {
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
 
-            <section className="h-100" style={{background:"#dbe0e3"}}>
+            <section className="h-100 gradBG" >
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -113,7 +113,7 @@ function EditDoctor() {
             <div className="form-outline mb-4">              
             <div className='row'>
               <div className='col-sm-3 fs-4 fw-bold labelnew'>
-                EMail ID
+                Email ID
               </div>
               <div className='col-sm-9'>
                 <input type="email" className="form-control form-control-lg" 
@@ -131,10 +131,19 @@ function EditDoctor() {
               Specialist
               </div>
               <div className='col-sm-9'>
-                <input type="text" className="form-control form-control-lg" 
+                {/* <input type="text" className="form-control form-control-lg" 
                 placeholder='Specialist'
                 value={specialist}
-                onChange={(event) => setSpecialist(event.target.value) }/>
+                onChange={(event) => setSpecialist(event.target.value) }/> */}
+                <select className="form-select form-select-lg mb-3" onChange={(e) =>setSpecialist(e.target.value)}>
+                    <option >{specialist}</option>
+                      <option value="General Physician">General Physician</option>
+                      <option value="Paediatrician">Paediatrician</option>
+                      <option value="Gynecologist">Gynecologist</option>
+                      <option value="Physiotherapist">Physiotherapist</option>
+                      <option value="Diabetologist">Diabetologist</option>
+                      <option value="Gastroenterologist">Gastroenterologist</option>
+                    </select>
               </div>
             </div>
 
@@ -146,7 +155,7 @@ function EditDoctor() {
                 Fee
               </div>
               <div className='col-sm-9'>
-                <input type="text" className="form-control form-control-lg" 
+                <input type="number" className="form-control form-control-lg" 
                 placeholder='Fee'
                 value={fee}
                 onChange={(event) => setFee(event.target.value) }/>

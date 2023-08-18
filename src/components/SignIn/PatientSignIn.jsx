@@ -63,12 +63,12 @@ function PatientSignIn() {
     return (
 
     <>
-      <section className="h-100" style={{background:"#dbe0e3"}}>
+      <section className="h-100 gradBG">
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
-        <div className="col">
+        <div className="col ">
         <div className="card card-registration my-4">
-        <div className="row g-0">
+        <div className="row g-0  ">
         <div className="col-xl-6  d-xl-block">
           <img src={patient}
             alt="Sample photo" className="img-fluid"

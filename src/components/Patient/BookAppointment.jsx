@@ -12,12 +12,13 @@ function createPatient() {
   const params=useParams();
   console.log(params)
   const[values,setValues]=useState([])
-  const[specialist,setSpecialist]=useState()
+  const[specialist,setSpecialist]=useState('')
+  const[doctorname,setDoctorname]=useState('')
   const[time,setTime]=useState('')
   const[date,setDate]=useState('')
   const[msg,setMsg]=useState('');
   const[msgg,setMsgg]=useState('');
-
+  const[use,setUse]=useState('')
 
   useEffect(()=>{
     getDoctorDetails();
@@ -41,21 +42,27 @@ function createPatient() {
   const handleCreate =(event) =>
   {
     event.preventDefault();
-    if(specialist !='' && date!='' && time!='')
-    {
-      
+     console.log("Name  "+date)
+     const doctorname=use.replace('Dr. ','');
+    //  setDoctorname(val)
+    //  console.log("Special  "+val)
+    //  console.log("FFFF --> "+doctorname)
+    
+    if(doctorname !='' && date!='' && time!='')
+    {    
       setMsgg('')
-      bookAppointment({specialist,date,time}) 
+      bookAppointment({doctorname,date,time}) 
+     
     } 
     else{
-      setMsgg("Please fill all the fields to book appointment");
+      setMsgg("Please fill all the fields to book appointment first");
     }
   
   }
 
   const bookAppointment = async(details)=>{
     try{
-        console.log(details)
+      console.log("YSE "+details)
       const response = await instance.protectedInstance.put(`/patient/book_appointment/${params.id}`,details);
       console.log('Created successful!');
       setMsg('Your Appointment has been created successfully!!  ')
@@ -65,6 +72,7 @@ function createPatient() {
     }
     catch(error)
     {
+     
       console.log("Error in creating doctor "+error)
       setMsg('')
       setMsgg("Please fill all the fields to book appointment");
@@ -75,7 +83,14 @@ function createPatient() {
   return (
 
     <>
-      <section className="h-100" style={{background:"#dbe0e3"}}>
+      <section className="h-100 gradBG">
+      <div className=" d-flex justify-content-end align-items-center ">
+              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+              {
+                localStorage.clear();
+                window.location.href = '/';
+              }}>LogOut</button>
+            </div>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -92,11 +107,12 @@ function createPatient() {
             <h3 className="mb-5 text-uppercase" style={{color:"#301091",'fontWeight':'bolder','textAlign':'center'}}>Book Appointment</h3>
               
             <div className="row">
-                  <select className="form-select form-select-lg mb-3" onChange={(e)=>setSpecialist(e.target.value)}>
-                    <option selected>--Select Specialist--</option>
+                  <select className="form-select form-select-lg mb-3" onChange={(e)=>setUse(e.target.value)}>
+                    
+                      <option selected >--Select Doctor--</option>
                         {
-                        values.map((opts,i)=>
-                        <option key={i}>{opts.specialist}</option>
+                        values.map((opts,i)=>                     
+                        <option key={i} >Dr. {opts.name}</option>
                         )
                         }
                     </select>

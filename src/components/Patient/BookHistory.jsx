@@ -8,6 +8,7 @@ function BookHistory() {
     const[specialist,setSpecialist]=useState([]);
     const[time,setTime]=useState([]);
     const[date,setDate]=useState([]);
+    const [value,setValue]=useState([])
     const navigate=useNavigate();
 
     useEffect(()=>{
@@ -17,8 +18,8 @@ function BookHistory() {
     const bookHistory = async() =>{
         try{
             const response = await instance.protectedInstance.get(`/patient/patientDetails/${params.id}`);
-            console.log(response.data.patient.time)
-            setSpecialist(response.data.patient.specialist) 
+            console.log(response.data.patient)
+            setSpecialist(response.data.patient.doctorname) 
             setDate(response.data.patient.date) 
             setTime(response.data.patient.time) 
             console.log("Patients fetched successfully")
@@ -28,11 +29,17 @@ function BookHistory() {
             console.log("Error in fetching patients ", error)
         }
     }
-
     
   return (
     <>
-      <section className="h-100" style={{background:"#dbe0e3"}}>
+      <section className="h-100 gradBG" >
+      <div className=" d-flex justify-content-end align-items-center ">
+              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+              {
+                localStorage.clear();
+                window.location.href = '/';
+              }}>LogOut</button>
+            </div>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -43,9 +50,9 @@ function BookHistory() {
     </div>
     <div className='row'>
 
-    <div className='col-3'>
-    <div class="table-responsive-sm text-nowrap">
-        <Table striped >
+    <div className='col-2'>
+    <div >
+        <Table striped className="table-responsive-sm ">
                 <thead align='middle'>
                   <tr >
                     <th>#</th>
@@ -65,15 +72,16 @@ function BookHistory() {
         </div>
 
         <div className='col-3'>
-        <Table striped >
+        <Table striped className="table-responsive-sm">
                 <thead align='middle'>
                   <tr >
-                    <th >Specialist</th>
+                    <th >Doctor</th>
                   </tr>
                 </thead> 
                 <tbody>                 
                     {specialist.map((s,i)=>{
                         return(
+                            
                             <tr align='middle'>                      
                                 <td key={s.id}>{s}</td>
                             </tr>
@@ -83,18 +91,18 @@ function BookHistory() {
          </Table>
         </div>
 
-        <div className='col-3'>
-        <Table striped >
+        <div className='col-4'>
+        <Table striped className="table-responsive-sm text-wrap">
                 <thead align='middle'>
                   <tr >                
-                    <th >Appointment Date</th>
+                    <th >Date</th>
                   </tr>
                 </thead> 
                 <tbody>                   
                     {date.map((s,i)=>{
                         return(
                             <tr align='middle'>                                                       
-                                <td key={s.id}>{s}</td>
+                                <td key={s.id}>{s.replace('T00:00:00.000Z','')}</td>
                             </tr>
                         )
                     })}
@@ -103,10 +111,10 @@ function BookHistory() {
         </div>
 
         <div className='col-3'>
-        <Table striped >
+        <Table striped className="table-responsive-sm text-wrap" >
                 <thead align='middle'>
                   <tr >                
-                    <th > Appointment Time</th>
+                    <th > Time</th>
                   </tr>
                 </thead> 
                 <tbody>                   
@@ -132,6 +140,7 @@ function BookHistory() {
     </div>  
     </div>
     </section>
+
 </>
   )
 }

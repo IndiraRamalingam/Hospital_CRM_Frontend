@@ -12,13 +12,13 @@ function SideBar() {
         id="accordionSidebar"
       >
         {/* <!-- Sidebar - Brand --> */}
-        <Link
+        {/* <Link
           className="sidebar-brand d-flex align-items-center justify-content-center"
           to="/adminDashboard">
           <div className="sidebar-brand-text">
             Admin
           </div>
-        </Link>
+        </Link> */}
 
         {/* <!-- Divider --> */}
         <hr className="sidebar-divider my-0" />
@@ -26,7 +26,7 @@ function SideBar() {
         {/* <!-- Nav Item - Dashboard --> */}
         <li className="nav-item active">
           <Link className="nav-link" to="/adminDashboard">
-            <span className="dashboard">Dashboard</span>
+            <span className="dashboard">Admin Dashboard</span>
           </Link>
         </li>
 

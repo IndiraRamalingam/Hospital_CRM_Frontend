@@ -131,6 +131,9 @@ const data1 = {
           backgroundColor: ['rgba(232,99,132,1)',
           'rgba(232,211,6,1)',
           'rgba(54,162,235,1)',
+          'RGB(40, 167, 69)',
+          '	RGB(249, 203, 82)',
+          '	RGB(180, 75, 161)',
           ],
           pointBackgroundColor: 'rgba(255,206,86,0.2)',
       }
@@ -166,30 +169,25 @@ plugins: {
         <SideBar/>
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
-              {/* Row 1 */}
+       
                   <div className='row'>
-                    <div className='mx-auto col-10 col-md-8 col-lg-4 mt-2'>
+                    <div className='col-sm-6'>
                     <div className='dough'>
                       <Doughnut data={data} options={options} />
                     </div>
                     </div>
-                    <div className='mx-auto col-10 col-md-8 col-lg-4 mt-2 '>
+                    <div className='col-sm-6'>
                     <div className='dough'>
                       <Pie data={data1} options={options1} />
                     </div>
                     </div>
                     </div>
-
-                {/* Row 2 */}
-
-                    <div className='row'>
-                    <div className='mx-auto col-10 col-md-8 col-lg-7 mt-2'>
+                  <div className='row'>                 
+                    <div className='col-sm-8'>
                     <div className='dough'>
                       <Bar data={data1} options={options1} />
                     </div>
-                    </div>
-                    
-                    
+                    </div>    
                     </div>
            
             </div>

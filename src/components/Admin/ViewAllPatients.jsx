@@ -36,7 +36,9 @@ function ViewAllPatients() {
           let response=await instance.protectedInstance.delete(`/admin/deletePatient/${id}`)
           if(response.status==200)
           {
-              setAlarm(true);
+            window.location.reload(false); 
+             // setAlarm(true);
+              
               console.log("Deleted Patient successfully")
           }
       }
@@ -77,11 +79,11 @@ function ViewAllPatients() {
                             var statuss,color,prescribe;
                             if(p.disease.length==0 && p.prescription.length==0)
                             {
-                                statuss="Yet to consult"
+                                statuss="New"
                                 color="danger"
                             }
                             else{
-                                statuss="Consulted"
+                                statuss="Regular"
                                 color="success"
                             }
                             return(  

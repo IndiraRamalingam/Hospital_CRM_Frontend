@@ -42,13 +42,20 @@ function viewPatient() {
 
   return (
     <>
-       <section className="h-100" style={{background:"#dbe0e3"}}>
+       <section className="h-100 gradBG" >
+       <div className=" d-flex justify-content-end align-items-center ">
+              <button className="btn btn-danger mt-4 mr-5"  onClick={()=>
+              {
+                localStorage.clear();
+                window.location.href = '/';
+              }}>LogOut</button>
+            </div>
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
         <div className="card card-registration my-4">
         <div className="row g-0">
-        <div className="col-xl-6 d-xl-block">
+        <div className="col-xl-6 d-none d-xl-block">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaOZas1O1wRYg5I8CllXlUoxw707WKwgPRiw&usqp=CAU"
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'500px'}}/>

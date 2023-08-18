@@ -61,13 +61,13 @@ function createPatient() {
 // Patient Registration
 
     <>
-      <section className="h-100" style={{background:"#dbe0e3"}}>
+      <section className="h-100 gradBG" >
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
         <div className="card card-registration my-4">
         <div className="row g-0">
-        <div className="col-xl-6 d-xl-block">
+        <div className="col-xl-6 d-none d-xl-block">
           <img src={patient}
             alt="Sample photo" className="img-fluid"
             style={{'borderTopLeftRadius': ".25rem", 'borderBottomLeftRadius': '.25rem','height':'750px'}}/>
@@ -86,7 +86,7 @@ function createPatient() {
             </div>
 
             <div className="form-outline mb-4">
-              <input type="text" className="form-control form-control-lg" 
+              <input type="number" className="form-control form-control-lg" 
               placeholder='Age'
               value={age}
               onChange={(event) => setAge(event.target.value) }/>
@@ -119,14 +119,14 @@ function createPatient() {
             </div>
 
             <div className="form-outline mb-4">
-              <input type="text" className="form-control form-control-lg" 
+              <input type='text' className="form-control form-control-lg" 
               placeholder='Address'
               value={address}
               onChange={(event) => setAddress(event.target.value) }/>
             </div>
 
             <div className="form-outline mb-4">
-              <input type="text" className="form-control form-control-lg" 
+              <input type='number' className="form-control form-control-lg" 
               placeholder='Contact Number'
               value={phone}
               onChange={(event) => setPhone(event.target.value) }/>
@@ -164,7 +164,7 @@ function createPatient() {
                     console.log("Cancelled")
                 }}>
               Cancel</button>
-              <button type="Submit" className="btn btn-warning btn-lg ms-2">Submit form</button>
+              <button type="Submit" className="btn btn-warning btn-lg ms-2">Register</button>
             </div>
 
           </div>

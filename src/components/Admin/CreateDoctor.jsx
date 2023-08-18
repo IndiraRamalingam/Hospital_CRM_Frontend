@@ -45,7 +45,7 @@ function CreateDoctor() {
         console.log('Created successful!');
         setMsg('New Doctor Added Succesfully')
         setMsgg(''),setName(''),setPassword(''),setConfirmpassword(''),setSpecialist('--Specialist In--'),setFee(''),setEmail('')
-        setInfor("Back to Dashboard")
+        setInfor("Back to Doctor List")
       }
       catch(error)
       {
@@ -62,7 +62,7 @@ function CreateDoctor() {
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
 
-            <section className="h-100" style={{background:"#dbe0e3"}}>
+            <section className="h-100 gradBG" >
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -96,7 +96,7 @@ function CreateDoctor() {
             <div className="row">
               <div className="col-md-5 mb-4">
                 <div className="form-outline">
-                  <input type="text" className="form-control form-control-lg" 
+                  <input type='password' className="form-control form-control-lg" 
                   placeholder='Password'
                   value={password}
                   onChange={(event) => setPassword(event.target.value) }/>
@@ -104,7 +104,7 @@ function CreateDoctor() {
               </div>
               <div className="col-md-7 mb-4">
                 <div className="form-outline">
-                  <input type="text" className="form-control form-control-lg" 
+                  <input type="password" className="form-control form-control-lg" 
                   placeholder='Confirm Password'
                   value={confirmpassword}
                   onChange={(event) => setConfirmpassword(event.target.value) }/>
@@ -129,7 +129,7 @@ function CreateDoctor() {
             </div>
 
             <div className="form-outline mb-4">
-              <input type="text" className="form-control form-control-lg" 
+              <input type='number' className="form-control form-control-lg" 
               placeholder='Fee'
               value={fee}
               onChange={(event) => setFee(event.target.value) }/>
@@ -138,7 +138,7 @@ function CreateDoctor() {
          
             
             <div>
-            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/adminDashboard">{infor}</Link></p>
+            <p style={{ color: "#2fe62f","fontSize":'20px' }}>{msg}  <Link to="/viewDoctor">{infor}</Link></p>
             <p style={{ color: "red" }}>{msgg}</p>
             </div>
 

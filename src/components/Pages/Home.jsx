@@ -12,12 +12,12 @@ function Home() {
 <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img className="d-block w-100" src={home} height="400" alt="First slide"/>
+      <img className="d-block w-100" src='https://img.freepik.com/premium-photo/stethoscope-desk-with-books-notebook_670008-606.jpg' height="400" alt="First slide"/>
     </div>   
   </div>
 </div>
 
-<section id="content-wrap-home">
+<section id="content-wrap-home" className='gradBG'>
   
 <div className="exp-block">
 		<div className="container">
@@ -28,19 +28,19 @@ function Home() {
       <br/>
 
 							<div className="row">
-							<div className="col-4">
+							<div className="col-sm-4 mb-4">
 							<div className="panel text-center" >
 								<figure className="d-flex justify-center" ><img src={patient} alt="Patient Login" /></figure>								
                 <Link to='/patientsignin'><h5>Patient Login</h5></Link>
 							</div>
 						</div>
-				      <div className="col-4">
+				      <div className="col-sm-4 mb-4">
 							<div className="panel text-center" >
               <figure className="d-flex justify-center" ><img src={doctor} alt="Doctor Login"  /></figure>
                 <Link to='/doctorsignin'><h5>Doctor Login</h5></Link>
 							</div>
 						</div>
-				      <div className="col-4">
+				      <div className="col-sm-4 mb-4">
 							<div className="panel text-center" >
               <figure className="d-flex justify-center" ><img src={admin} alt="Admin Login"  /></figure>								
                 <Link to='/adminsignin'><h5>Admin Login</h5></Link>
@@ -49,21 +49,21 @@ function Home() {
 				</div>
       <br/><br/>
 
-        <div className="title line text-center">
+        <div className="title line text-center textWhite">
           <h1>Sample Credentials</h1>
           <br/>
           <div className='row'>
-            <div className='col-4'>
+            <div className='col-sm-4 mb-4 '>
               <h4>Patient Credentials</h4>
               <h6><b>Email:</b> patient@gmail.com</h6>
               <h6><b>Password:</b> 123</h6>
             </div>
-            <div className='col-4'>
+            <div className='col-sm-4 mb-4'>
               <h4>Doctor Credentials</h4>
               <h6><b>Email:</b> doctor@gmail.com</h6>
               <h6><b>Password:</b> 123</h6>
             </div>
-            <div className='col-4'>
+            <div className='col-sm-4 mb-4'>
               <h4>Admin Credentials</h4>
               <h6><b>Email:</b> admin@gmail.com</h6>
               <h6><b>Password:</b> 123</h6>

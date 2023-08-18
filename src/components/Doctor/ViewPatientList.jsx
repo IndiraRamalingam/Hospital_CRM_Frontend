@@ -34,6 +34,7 @@ function ViewPatientList() {
             if(response.status==200)
             {
                 setAlarm(true);
+                window.location.reload(false); 
                 console.log("Deleted Patient successfully")
             }
         }
@@ -46,7 +47,7 @@ function ViewPatientList() {
 
   return (
    <>
-        <section className="h-100" style={{background:"#dbe0e3"}}>
+        <section className="h-100 gradBG">
         <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
         <div className="col">
@@ -68,58 +69,121 @@ function ViewPatientList() {
                     <th>Action</th>
                   </tr>
                 </thead> 
-                {patient.map((p,i) =>{             
-                    var statuss,color,prescribe;
-                    if(p.disease.length==0 && p.prescription.length==0)
-                    {
-                        statuss="Not Attended"
-                        color="danger"
-                        prescribe="Prescribe Medicine"
+                {patient.map((p,i) =>{    
+                    var p_date=p.date.length;
+                    var p_disease=p.disease.length;
+                    console.log(p_date + "   "+p_disease) 
 
-                    }
-                    else{
-                        statuss="Attended"
-                        color="success"
-                        prescribe="View Report and Prescribe"
-                    }
-                    return(          
-                        <tbody key={p._id}  align='middle'>
-                        <tr>
-                            <td>{i+1}</td>
-                            <td>{p.name}</td>
-                            <td>{p.email}</td>
-                            <td>{p.phone}</td>
-                            <td>
-                                <span className={`badge bg-${color}`}>
-                                {statuss}
-                                </span>
-                            </td>
-                            <td>
-                            <Dropdown>
-                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                                Action
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                <Dropdown.Item
-                                    as={Link}
-                                    to={`/editPatient/${p._id}`}
-                                >
-                                    {prescribe}
-                                </Dropdown.Item>
-                                <Dropdown.Item
-                                    onClick={() => {
-                                        deletePatient(p._id);
-                                    }}
-                                >
-                                    Delete Patient
-                                </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                            </td>
-                        </tr>
-                        </tbody>
                     
-                    );
+                    if(p_date!=p_disease){
+
+                        var statuss,color,prescribe;
+                        if(p.disease.length==0 && p.prescription.length==0)
+                        {
+                            statuss="New"
+                            color="danger"
+                            prescribe="Prescribe Medicine"
+    
+                        }
+                        else{
+                            statuss="Regular"
+                            color="success"
+                            prescribe="View Report and Prescribe"
+                        }
+                        return(          
+                            <tbody key={p._id}  align='middle'>
+                            <tr>
+                                <td>{i+1}</td>
+                                <td>{p.name}</td>
+                                <td>{p.email}</td>
+                                <td>{p.phone}</td>
+                                <td>
+                                    <span className={`badge bg-${color}`}>
+                                    {statuss}
+                                    </span>
+                                </td>
+                                <td>
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    Action
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                    <Dropdown.Item
+                                        as={Link}
+                                        to={`/editPatient/${p._id}`}
+                                    >
+                                        {prescribe}
+                                    </Dropdown.Item>
+                                    <Dropdown.Item
+                                        onClick={() => {
+                                            deletePatient(p._id);
+                                        }}
+                                    >
+                                        Delete Patient
+                                    </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                </td>
+                            </tr>
+                            </tbody>
+                        
+                        );
+                    }   
+                    else{
+
+                        var statuss,color,prescribe;
+                        if(p.disease.length==0 && p.prescription.length==0)
+                        {
+                            statuss="New"
+                            color="danger"
+                            prescribe="Prescribe Medicine"
+    
+                        }
+                        else{
+                            statuss="Prescribed"
+                            color="warning"
+                            prescribe="View Report and Prescribe"
+                        }
+                        return(          
+                            <tbody key={p._id}  align='middle'>
+                            <tr>
+                                <td>{i+1}</td>
+                                <td>{p.name}</td>
+                                <td>{p.email}</td>
+                                <td>{p.phone}</td>
+                                <td>
+                                    <span className={`badge bg-${color}`}>
+                                    {statuss}
+                                    </span>
+                                </td>
+                                <td>
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    Action
+                                    </Dropdown.Toggle>
+                                    <Dropdown.Menu>
+                                    {/* <Dropdown.Item
+                                        as={Link}
+                                        to={`/editPatient/${p._id}`}
+                                    >
+                                        {prescribe}
+                                    </Dropdown.Item> */}
+                                    <Dropdown.Item
+                                        onClick={() => {
+                                            deletePatient(p._id);
+                                        }}
+                                    >
+                                        Delete Patient
+                                    </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                                </td>
+                            </tr>
+                            </tbody>
+                        
+                        );
+                    }
+                    
 
                     
                 })}
