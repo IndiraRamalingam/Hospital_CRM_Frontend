@@ -42,11 +42,11 @@ function createPatient() {
   const handleCreate =(event) =>
   {
     event.preventDefault();
-     console.log("Name  "+date)
-     const doctorname=use.replace('Dr. ','');
+     const val=use.replace('Dr. ','');
     //  setDoctorname(val)
     //  console.log("Special  "+val)
-    //  console.log("FFFF --> "+doctorname)
+    const doctorname=val.slice('-',val.search(' -'))
+      console.log("FFFF --> "+doctorname)
     
     if(doctorname !='' && date!='' && time!='')
     {    
@@ -112,7 +112,7 @@ function createPatient() {
                       <option selected >--Select Doctor--</option>
                         {
                         values.map((opts,i)=>                     
-                        <option key={i} >Dr. {opts.name}</option>
+                        <option key={i} >Dr. {opts.name} - {opts.specialist}</option>
                         )
                         }
                     </select>
