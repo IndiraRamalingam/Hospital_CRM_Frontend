@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import home from "../../assets/Home.jpg"
+import home from "../../assets/HomeNew.avif"
 import patient from "../../assets/PatientsIcon.png"
 import doctor from "../../assets/DoctorIcon.png"
 import admin from "../../assets/AdminIcon.png"
@@ -12,7 +12,7 @@ function Home() {
 <div id="carouselExampleSlidesOnly" className="carousel slide" data-ride="carousel">
   <div className="carousel-inner">
     <div className="carousel-item active">
-      <img className="d-block w-100" src='https://img.freepik.com/premium-photo/stethoscope-desk-with-books-notebook_670008-606.jpg' height="400" alt="First slide"/>
+      <img className="d-block w-100" src={home} height="400" alt="Hospital CRM"/>
     </div>   
   </div>
 </div>
