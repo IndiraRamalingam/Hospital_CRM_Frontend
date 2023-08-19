@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseURL='https://hospital-crm-backend.onrender.com/api'
-//const baseURL='http://localhost:3001/api'
+//const baseURL='https://hospital-crm-backend.onrender.com/api'
+const baseURL='http://localhost:3001/api'
 
 //console.log(baseURL)
 
@@ -20,8 +20,6 @@ const protectedInstance= axios.create({
 
 
 protectedInstance.interceptors.request.use(config =>{
-    console.log("ENTERED")
-    console.log("Token  " +sessionStorage.token)
     if(sessionStorage.token){
         config.headers['Authorization'] = sessionStorage.token;
     }

@@ -27,8 +27,6 @@ function editPatient() {
     try{
         const response = await instance.protectedInstance.get(`/doctor/get_patients/${params.id}`);
         const res=response.data;
-        setName(res.patient.name)
-        setAge(res.patient.age)
         setNewDisease(response.data.patient.disease)
         setNewPrescription(response.data.patient.prescription)
         }
